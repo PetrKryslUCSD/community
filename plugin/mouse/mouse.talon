@@ -3,7 +3,7 @@ control off: user.mouse_sleep()
 zoom mouse: tracking.control_zoom_toggle()
 camera overlay: tracking.control_debug_toggle()
 run calibration: tracking.calibrate()
-touch:
+lefty:
     # close zoom if open
     user.zoom_close()
     mouse_click(0)
@@ -34,7 +34,7 @@ mid click:
 #option = alt
 #shift
 #super = windows key
-<user.modifiers> touch:
+<user.modifiers> lefty:
     # close zoom if open
     user.zoom_close()
     key("{modifiers}:down")
@@ -65,7 +65,7 @@ mid click:
     mouse_click()
     # close the mouse grid
     user.grid_close()
-left drag | drag | drag start:
+lefty drag | drag | drag start:
     # close zoom if open
     user.zoom_close()
     user.mouse_drag(0)

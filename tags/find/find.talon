@@ -1,6 +1,7 @@
 tag: user.find
 -
-hunt this: edit.find()
+# Petr Krysl 2024
+(hunt this | search): edit.find()
 hunt this (pace | paste):
     edit.find()
     sleep(25ms)

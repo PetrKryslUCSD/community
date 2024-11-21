@@ -12,6 +12,18 @@ window reload: user.vscode("workbench.action.reloadWindow")
 window close: user.vscode("workbench.action.closeWindow")
 #multiple_cursor.py support end
 
+# Petr Krysl 2024
+compal [<user.text>]:
+    user.vscode("workbench.action.showCommands")
+    insert(user.text or "")
+    
+# Open folder  Petr Krysl 2024
+open folder: 
+    key(ctrl-k)
+    key(ctrl-o)
+# Start REPL
+start repl: user.vscode("Julia: Start REPL")
+
 go view [<user.text>]:
     user.vscode("workbench.action.openView")
     insert(user.text or "")
@@ -25,6 +37,8 @@ bar search: user.vscode("workbench.view.search")
 bar source: user.vscode("workbench.view.scm")
 bar test: user.vscode("workbench.view.testing.focus")
 bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
+# Petr Krysl 2024
+sidebar: user.vscode("workbench.action.toggleSidebarVisibility") 
 
 # Symbol search
 symbol hunt [<user.text>]:
@@ -135,12 +149,60 @@ go recent [<user.text>]:
     sleep(250ms)
 go edit: user.vscode("workbench.action.navigateToLastEditLocation")
 
+# Petr Krysl 2022
+go line:
+    key(ctrl-g)
+go line <number>:
+    key(ctrl-g)
+    insert("{number}")
+    key(enter)
+go any: key(ctrl-p)
+go local: 
+    key(ctrl-c)
+    key(ctrl-p)
+    key(@)
+    # key(ctrl-v)
+go workspace: 
+    key(ctrl-c)
+    key(ctrl-p)
+    key(#)
+    # key(ctrl-v)
+
+# Editing (Petr Krysl 2022)
+# Using anchor (Petr Krysl 2024)
+sark: 
+    key(ctrl-k)
+    key(ctrl-b)
+ex mark:
+    key(ctrl-k)
+    key(ctrl-k)
+# expand selection, Petr Krysl 2024
+ex ex: 
+    key(shift-alt-right)
+# expanded selection to the interior between brackets, Petr Krysl 2024
+# needs the extension Bracket Select
+ex cats: 
+    key(alt-a)
+ex point:
+    key("shift:down")
+    mouse_click(0)
+    key("shift:up")
+
+# Searching Petr Krysl 2024
+search in files:
+    key(ctrl-shift-f)
+# Petr Krysl 2024
+quick search:
+    key(ctrl-shift-p)
+    key(backspace)
+    key(%)
+
 # Bookmarks. Requires Bookmarks plugin
 bar marks: user.vscode("workbench.view.extension.bookmarks")
 go marks:
     user.deprecate_command("2023-06-06", "go marks", "bar marks")
     user.vscode("workbench.view.extension.bookmarks")
-toggle mark: user.vscode("bookmarks.toggle")
+[toggle] mark: user.vscode("bookmarks.toggle")
 go next mark: user.vscode("bookmarks.jumpToNext")
 go last mark: user.vscode("bookmarks.jumpToPrevious")
 
@@ -288,3 +350,26 @@ cell run: user.vscode("notebook.cell.execute")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+# Editing commands Petr Krysl 2024
+tit case: user.vscode("Transform to Title Case")
+low case: user.vscode("Transform to Lowercase")
+up case: user.vscode("Transform to Uppercase")
+# Rewrap text
+reflow: key(alt-q)
+# Insert "- " in markdown to make a bullet
+bullet:
+	key(home)
+	insert("- ")
+    key(end)
+# Quote the current selection with back ticks
+bee tick that:
+    key(ctrl-x)
+    key(`)
+    key(ctrl-v)
+    key(`)
+# Petr Krysl 2024
+clone line [down]: user.vscode("editor.action.copyLinesDownAction")
+clone line up: user.vscode("editor.action.copyLinesUpAction")
+
+    

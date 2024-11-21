@@ -34,7 +34,7 @@ state except: "except "
 state raise: "raise "
 self taught: "self."
 pie test: "pytest"
-state past: "pass"
+state pass: "pass"
 
 [state] raise {user.python_exception}:
     user.insert_between("raise {python_exception}(", ")")

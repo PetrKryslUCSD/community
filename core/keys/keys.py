@@ -139,6 +139,17 @@ punctuation_words = {
     "left paren": "(",
     "R paren": ")",
     "right paren": ")",
+    "be tick": "`", # Petr Krysl, 2022
+    "dot drop": ";",# Petr Krysl, 2023
+    "two dots": ":", # Petr Krysl, 2023
+    "quest": "?", # Petr Krysl, 2022
+    "bang": "!", # Petr Krysl, 2022
+    "star": "*", # Petr Krysl, 2022
+    "sharp": "#", # Petr Krysl, 2022
+    "Percy": "%", # Petr Krysl, 2022
+    "swirl": "@", # Petr Krysl, 2022
+    "amper": "&", # Petr Krysl, 2022
+    "dolly": "$", # Petr Krysl, 2022
 }
 symbol_key_words = {
     "dot": ".",
@@ -195,6 +206,30 @@ symbol_key_words = {
     # Currencies
     "dollar": "$",
     "pound": "£",
+    "bee tick": "`", # Petr Krysl, 2024 
+    "wink": ";", # Petr Krysl, 2024
+    "trophy": "'", # Petr Krysl, 2024
+    "equals": "=", # Petr Krysl, 2024
+    "plus": "+", # Petr Krysl, 2024
+    "quest": "?", # Petr Krysl, 2024
+    "squiggle": "~", # Petr Krysl, 2024
+    "dolly": "$", # Petr Krysl, 2024
+    "score": "_", # Petr Krysl, 2024
+    "open square": "[", # Petr Krysl, 2024
+    "close square": "]", # Petr Krysl, 2024
+    "open par": "(", # Petr Krysl, 2024
+    "close par": ")", # Petr Krysl, 2024
+    "open curly": "{", # Petr Krysl, 2024
+    "close curly": "}", # Petr Krysl, 2024
+    "open fork": "<", # Petr Krysl, 2024
+    "close fork": ">", # Petr Krysl, 2024
+    "hat": "^", # Petr Krysl, 2024
+    "swirl": "@", # Petr Krysl, 2024
+    "quote": '"', # Petr Krysl, 2024
+    "quote mark": '"', # Petr Krysl, 2024
+    "star": "*", # Petr Krysl, 2024w
+    "hash": "#", # Petr Krysl, 2024
+    "Percy": "%", # Petr Krysl, 2024
 }
 
 # make punctuation words also included in {user.symbol_keys}
