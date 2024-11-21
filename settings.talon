@@ -1,6 +1,6 @@
 settings():
     # Adjust the scale of the imgui
-    imgui.scale = 1.3
+    imgui.scale = 1.0
 
     # Uncomment to set the speech timeout. This is the amount of time after you stop
     # speaking until Talon starts processing the spoken audio. Default is 0.3s.
@@ -36,8 +36,8 @@ settings():
     # Choose how pop click should work in 'control mouse' mode
     # 0 = off
     # 1 = on with eyetracker but not zoom mouse mode
-    # 2 = on but not with zoom mouse mode
-    user.mouse_enable_pop_click = 1
+    # 2 = on but not with zoom mouse mode # Petr Krysl, 2024
+    user.mouse_enable_pop_click = 2 
 
     # If `true`, use a hissing noise to scroll continuously
     user.mouse_enable_hiss_scroll = false
@@ -111,4 +111,5 @@ settings():
 # Uncomment the below to enable support for saying numbers without a prefix.
 # By default you need to say "numb one" to write "1". If you uncomment this,
 # you can say "one" to write "1".
-# tag(): user.unprefixed_numbers
+# Petr Krysl 2024
+tag(): user.unprefixed_numbers

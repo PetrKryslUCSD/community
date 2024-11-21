@@ -109,6 +109,7 @@ abbreviations = {
     "definition": "def",
     "degree": "deg",
     "delete": "del",
+    'space': 'space',  
     "depend": "dep",
     "depends": "deps",
     "description": "desc",
