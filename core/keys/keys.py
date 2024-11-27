@@ -170,6 +170,7 @@ symbol_key_words = {
     "right bracket": "]",
     "slash": "/",
     "backslash": "\\",
+    "whack": "\\", # Petr Krysl, 2022
     "minus": "-",
     "dash": "-",
     "equals": "=",
