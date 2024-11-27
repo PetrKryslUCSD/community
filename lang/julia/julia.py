@@ -5,7 +5,7 @@ mod = Module()
 ctx = Context()
 
 ctx.matches = r"""
-tag: user.julia
+code.language: julia
 """
 
 ctx.tags = [
