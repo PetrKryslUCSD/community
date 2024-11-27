@@ -188,6 +188,19 @@ ex point:
     mouse_click(0)
     key("shift:up")
 
+# Selecting word
+sword: key(ctrl-d)
+# Swap line up or down Petr Krysl 2024
+scoot up:
+    key(alt-up)
+scoot down:
+    key(alt-down)
+# Indentation
+no indent: key(shift-tab:6)
+reformat: user.vscode("Format Selection")
+recenter: 
+    user.vscode("Recenter Top Bottom")
+
 # Searching Petr Krysl 2024
 search in files:
     key(ctrl-shift-f)
@@ -368,8 +381,6 @@ bee tick that:
     key(`)
     key(ctrl-v)
     key(`)
-# Petr Krysl 2024
-clone line [down]: user.vscode("editor.action.copyLinesDownAction")
-clone line up: user.vscode("editor.action.copyLinesUpAction")
+
 
     
