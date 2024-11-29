@@ -31,7 +31,7 @@ ctx.lists['user.code_libraries'] = {
     'revise': 'Revise',
 }
 
-ctx.lists['user.code_functions'] = {
+ctx.lists['user.code_common_function'] = {
     "abs": "abs",
     "axes": "axes",
     "all run": "allrun",
@@ -55,6 +55,7 @@ ctx.lists['user.code_functions'] = {
     "each index": "eachindex",
     "eigen": "eigen",
     "ell type": "eltype",
+    "element type": "eltype",
     "enumerate": "enumerate",
     "figure": "figure",
     "fill in place": "fill!",
