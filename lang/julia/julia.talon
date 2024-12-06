@@ -69,7 +69,7 @@ state function:
     insert("end ")
     key(backspace up)
     key(end left:2)
-
+assign: insert(" = ")
 
 of type: insert("::")
 of subtype: insert("<:")
