@@ -1,4 +1,5 @@
-app: emacs
+os: windows
+win.title: /GNU Emacs/
 -
 tag(): user.tabs
 tag(): user.splits
@@ -7,6 +8,8 @@ tag(): user.line_commands
 # ----- GENERAL ----- #
 #suplex: key(ctrl-x)
 cancel: user.emacs("keyboard-quit")
+# Petr Krysl
+sark: key(ctrl-space)
 exchange: user.emacs("exchange-point-and-mark")
 execute: user.emacs("execute-extended-command")
 execute {user.emacs_command}$: user.emacs(emacs_command)
