@@ -1,5 +1,5 @@
 os: windows
-win.title: /[.]jl - GNU Emacs/
+win.title: /[.]jl.* - GNU Emacs/
 -
 # Julia Code in Emacs running in WSL (Petr Krysl 2024)
 tag(): user.code_imperative
@@ -136,14 +136,8 @@ macro locals: insert("@locals ")
 macro continue: insert("@continue ")
 
 # Start REPL
-start repl: user.vscode("Julia: Start REPL")
+go command: key(ctrl-c ctrl-z)
 
-flip comment:
-    key(ctrl-x)
-    key(ctrl-;)
-tail comment:
-    key(end)
-    insert(" # ")
 
 # Add missing operators Petr Krysl 2024
 op pair: insert(" => ")
@@ -164,11 +158,24 @@ round to square:
     sleep(1000ms)
     key("]")
 
+# https://github.com/tpapp/julia-repl/
+# Evaluate a line
 eval: key(ctrl-enter)
 eval buffer: 
     key(ctrl-c)
     key(ctrl-b)
-
-run [with path]: 
+eval region: 
+    key(ctrl-c)
+    key(ctrl-c)
+eval buffer revise: 
     key(ctrl-c)
     key(ctrl-t)
+doc on: 
+    key(ctrl-c)
+    key(ctrl-d)
+to folder: 
+    key(ctrl-c)
+    key(ctrl-p)
+list methods: 
+    key(ctrl-c)
+    key(ctrl-l)    

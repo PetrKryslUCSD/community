@@ -1,5 +1,5 @@
 os: windows
-win.title: /[*]julia[*] - GNU Emacs/
+win.title: /[*]julia.*[*] - GNU Emacs/
 -
 # Julia terminal
 tag(): terminal
@@ -8,9 +8,8 @@ tag(): terminal
 # Julia package commands. Emacs running in WSL.
 
 julia: insert("julia --project=. ")
-[funky] include: include("\(")
 
-
+# Package operations
 package envy: 
     insert('using Pkg; Pkg.activate("."); Pkg.instantiate(); ') 
 
@@ -32,6 +31,7 @@ package build:
 package precompile: 
     insert('using Pkg; Pkg.precompile(); ') 
 
+# Commands for changing
 go <user.letter>:
     insert("cd {letter}")
 go shift <user.letter>:
@@ -44,3 +44,11 @@ go parent:
     insert("cd ..")
 go dash:
     insert("cd -")
+
+# Copy / paste in vterm terminal
+copy:
+    key(ctrl-c ctrl-t)
+    edit.copy()
+    key(ctrl-c ctrl-t)
+paste:
+    edit.paste()
