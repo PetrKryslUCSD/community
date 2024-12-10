@@ -157,12 +157,14 @@ go line <number>:
     insert("{number}")
     key(enter)
 go any: key(ctrl-p)
-go local: 
+# Go to a local symbol
+go here: 
     key(ctrl-c)
     key(ctrl-p)
     key(@)
     # key(ctrl-v)
-go workspace: 
+# Go to a symbol in the workspace
+go work: 
     key(ctrl-c)
     key(ctrl-p)
     key(#)
