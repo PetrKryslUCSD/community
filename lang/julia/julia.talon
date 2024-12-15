@@ -177,31 +177,8 @@ to folder:
 
 
 # Petr Krysl 2024
-# Julia package commands. These should be moved to Julia.talon 
-# after it becomes possible to switch to a different context 
-# in the terminal.
-package envy: 
-    insert('using Pkg; Pkg.activate("."); Pkg.instantiate(); ') 
 
-package revise: 
-    insert("using Revise; ") 
-
-package test: 
-    insert('using Pkg; Pkg.test(); ') 
-
-package update: 
-    insert('using Pkg; Pkg.update(); ') 
-
-package status: 
-    insert('using Pkg; Pkg.status(); ') 
-
-package build: 
-    insert('using Pkg; Pkg.build(); ') 
-
-package precompile: 
-    insert('using Pkg; Pkg.precompile(); ') 
-
-# Running (Petr Krysl 2022)
+# Running 
 eval: key(ctrl-enter)
 eval move: key(shift-enter)
 
