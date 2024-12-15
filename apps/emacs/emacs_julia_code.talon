@@ -2,6 +2,7 @@ os: windows
 win.title: /[.]jl.* - GNU Emacs/
 -
 # Julia Code in Emacs running in WSL (Petr Krysl 2024)
+tag(): code.language: julia
 tag(): user.code_imperative
 tag(): user.code_comment_line
 tag(): user.code_comment_block_c_like
@@ -135,8 +136,7 @@ macro trace: insert("@trace ")
 macro locals: insert("@locals ")
 macro continue: insert("@continue ")
 
-# Start REPL
-go command: key(ctrl-c ctrl-z)
+
 
 
 # Add missing operators Petr Krysl 2024
@@ -159,7 +159,7 @@ round to square:
     key("]")
 
 # https://github.com/tpapp/julia-repl/
-# Evaluate a line
+start repl: key(ctrl-c ctrl-z)
 eval: key(ctrl-enter)
 eval buffer: 
     key(ctrl-c)
@@ -178,4 +178,16 @@ to folder:
     key(ctrl-p)
 list methods: 
     key(ctrl-c)
-    key(ctrl-l)    
+    key(ctrl-l)  
+
+# Julia snail
+# Start REPL
+# start repl: user.emacs("julia-snail")
+
+# eval buffer: user.emacs("julia-snail-send-buffer-file") 
+# [main] eval: 
+#     key(ctrl-u 4) 
+#     user.emacs("julia-snail-send-line") 
+# current eval: 
+#     user.emacs("julia-snail-send-line") 
+# doc on:  user.emacs("julia-snail-doc-lookup") 

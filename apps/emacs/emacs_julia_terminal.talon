@@ -44,8 +44,9 @@ go parent:
     insert("cd ..")
 go dash:
     insert("cd -")
+where: insert("pwd")
 
-# Copy / paste in vterm terminal
+# Copy / paste in vterm terminal. Requires switching the terminal to the state vterm-copy.
 copy:
     key(ctrl-c ctrl-t)
     edit.copy()

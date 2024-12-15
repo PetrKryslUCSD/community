@@ -14,7 +14,7 @@ tag(): user.line_commands
 cancel: user.emacs("keyboard-quit")
 # Petr Krysl
 sark: key(ctrl-space)
-exchange: user.emacs("exchange-point-and-mark")
+(exchange | ex mark): user.emacs("exchange-point-and-mark")
 execute: user.emacs("execute-extended-command")
 execute {user.emacs_command}$: user.emacs(emacs_command)
 execute <user.text>$:
@@ -31,6 +31,8 @@ cursors:
 sword: key(ctrl->)
 dired:
     user.emacs("dired")
+other dired:
+    key(ctrl-x 4 d)
 
 abort recursive [edit]: user.emacs("abort-recursive-edit")
 browse kill ring: user.emacs("browse-kill-ring")
@@ -64,13 +66,17 @@ manual <user.text>:
     user.insert_formatted(text, "DASH_SEPARATED")
 
 # BUFFER SWITCHING #
-switch: user.emacs("switch-to-buffer")
+switch buffer: user.emacs("switch-to-buffer")
 other switch: user.emacs("switch-to-buffer-other-window")
 display: user.emacs("display-buffer")
 # Petr Krysl 2024
 show buffers: key(ctrl-x ctrl-b)
 switch back: key(ctrl-x left)
 switch for: key(ctrl-x right)
+switch [menu]:
+    key("ctrl:down")
+    mouse_click(0)
+    key("ctrl:up")
 
 
 # SHELL COMMANDS #
@@ -319,11 +325,11 @@ rectangle number lines: user.emacs("rectangle-number-lines")
 xref find apropos: user.emacs("xref-find-apropos")
 xref go back: user.emacs("xref-go-back")
 # Petr Krysl 2024
-tags table visit: user.emacs("visit-tags-table")
-tags table create: user.emacs("create-tags-table")
+visit tags table: user.emacs("visit-tags-table")
+create tags table: user.emacs("create-tags-table")
 # abbreviation
 visit: user.emacs("xref-find-definitions")
-visit other: user.emacs("xref-find-definitions-other-window")
+other visit: user.emacs("xref-find-definitions-other-window")
 where be: user.emacs("xref-find-references")
 jump back:  user.emacs_meta(",")
 jump for:  user.emacs_meta("ctrl-,")
@@ -418,3 +424,13 @@ flip comment:
 tail comment:
     key(end)
     insert(" # ")
+
+# Capitalization
+up case: key(ctrl-x ctrl-u)
+low case: key(ctrl-x ctrl-l)
+tit case: user.emacs("capitalize-region")
+
+# Hippie Completion
+hip: key(alt-/)
+
+# 

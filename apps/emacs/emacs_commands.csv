@@ -18,7 +18,7 @@ clear-rectangle, ctrl-x r c
 clone-indirect-buffer,, clo-i
 comment-dwim, meta-;
 comment-line,, comment-l
-comment-region, ctrl-c ;
+comment-region, ctrl-x ctrl-;
 compile
 compile-defun,, co-def
 copy-rectangle-as-kill, ctrl-x r meta-w
@@ -210,7 +210,7 @@ transpose-paragraphs,, tr-par
 transpose-sentences,, tr-sen
 transpose-sexps, meta-ctrl-t
 transpose-words, meta-t
-undo, ctrl-_
+undo, ctrl-x u
 unhighlight-regexp, meta-s h u
 universal-argument, ctrl-u
 vc-annotate, ctrl-x v g
