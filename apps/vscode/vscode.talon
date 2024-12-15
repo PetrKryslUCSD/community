@@ -21,8 +21,6 @@ compal [<user.text>]:
 open folder: 
     key(ctrl-k)
     key(ctrl-o)
-# Start REPL
-start repl: user.vscode("Julia: Start REPL")
 
 go view [<user.text>]:
     user.vscode("workbench.action.openView")
@@ -149,7 +147,7 @@ go recent [<user.text>]:
     sleep(250ms)
 go edit: user.vscode("workbench.action.navigateToLastEditLocation")
 
-# Petr Krysl 2022
+# Petr Krysl 2024
 go line:
     key(ctrl-g)
 go line <number>:
@@ -165,10 +163,7 @@ go here:
     # key(ctrl-v)
 # Go to a symbol in the workspace
 go work: 
-    key(ctrl-c)
-    key(ctrl-p)
-    key(#)
-    # key(ctrl-v)
+    key(ctrl-t)
 
 # Editing (Petr Krysl 2022)
 # Using anchor (Petr Krysl 2024)
