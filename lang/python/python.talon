@@ -56,3 +56,5 @@ from import: user.insert_between("from ", " import ")
 
 flip comment:
     key(ctrl-/)
+
+assign: insert(" = ")

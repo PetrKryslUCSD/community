@@ -14,6 +14,8 @@ ctx.lists["user.code_common_function"] = {
     "list": "list",
     "print": "print",
     "range": "range",
+    "a range": "arange",
+    "norm": "norm",
     "set": "set",
     "split": "split",
     "string": "str",
