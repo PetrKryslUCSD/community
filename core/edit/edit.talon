@@ -139,7 +139,8 @@ paste match: edit.paste_match_style()
 
 # Duplication
 clone that: edit.selection_clone()
-clone line: edit.line_clone()
+# This is getting confused with go to line, Petr Krysl, 2025
+repeat line: edit.line_clone()
 
 # Insert new line. Disable Petr Krysl 2024
 #new line above: edit.line_insert_up()
