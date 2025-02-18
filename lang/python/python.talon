@@ -58,3 +58,5 @@ flip comment:
     key(ctrl-/)
 
 assign: insert(" = ")
+
+numpy | num pie: insert("numpy")
