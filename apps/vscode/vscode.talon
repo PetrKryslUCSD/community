@@ -1,5 +1,8 @@
 #custom vscode commands go here
-app: vscode
+os: windows
+and app.name: Visual Studio Code
+os: windows
+and app.exe: /^code\.exe$/i
 -
 tag(): user.find_and_replace
 tag(): user.line_commands
