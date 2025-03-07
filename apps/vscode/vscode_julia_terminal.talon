@@ -47,3 +47,7 @@ go parent:
     insert("cd ..")
 go dash:
     insert("cd -")
+
+# Petr Krysl 2025
+copy: key(shift-ctrl-c)
+paste: key(shift-ctrl-v)
