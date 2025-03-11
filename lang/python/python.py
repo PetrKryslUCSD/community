@@ -8,8 +8,13 @@ ctx.matches = r"""
 code.language: python
 """
 ctx.lists["user.code_common_function"] = {
+    "array": "array",
+    "concatenate": "concatenate",
+    "dot": "dot",
     "enumerate": "enumerate",
     "integer": "int",
+    "items": "items",
+    "keys": "keys",
     "length": "len",
     "list": "list",
     "print": "print",
@@ -20,6 +25,8 @@ ctx.lists["user.code_common_function"] = {
     "split": "split",
     "string": "str",
     "update": "update",
+    "values": "values",
+    "zeros": "zeros",
 }
 
 """a set of fields used in python docstrings that will follow the
