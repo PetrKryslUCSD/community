@@ -12,13 +12,14 @@ flip comment: key(ctrl-1)
 repeat line: key(ctrl-alt-down)
 enter array: key(ctrl-m)
 assign: insert(" = ")
+completion: key(ctrl-space)
 
 auto format: key(ctrl-alt-i)
 
 run file: key(f5)
 debug file: key(ctrl-f5)
 step [over]: key(ctrl-f10)
-step into: key(ctrl-f11)
+step in: key(ctrl-f11)
 step out: key(ctrl-shift-f11)
 continue: key(ctrl-f12)
 
@@ -26,3 +27,4 @@ search in files: key(alt-shift-f)
 last edit: key(ctrl-alt-shift-left)
 
 go any: key(ctrl-p)
+
