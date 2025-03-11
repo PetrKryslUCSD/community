@@ -36,7 +36,7 @@ new paragraph:
     key(enter)    
     key(enter)    
 
-commace: insert(", ")
+vir blank: insert(", ")
 
 # For debugging
 print application name: print(app.name())
