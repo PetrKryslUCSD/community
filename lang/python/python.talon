@@ -54,6 +54,8 @@ import <user.code_libraries>:
 
 from import: user.insert_between("from ", " import ")
 
+# Petr Krysl 2025
+completion: key(ctrl-space)
 flip comment:
     key(ctrl-/)
 
