@@ -37,6 +37,7 @@ new paragraph:
     key(enter)    
 
 vir blank: insert(", ")
+and: insert(" and ")
 
 # For debugging
 print application name: print(app.name())
