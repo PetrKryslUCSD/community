@@ -140,7 +140,7 @@ refactor this: user.vscode("editor.action.refactor")
 (go declaration | follow): user.vscode("editor.action.revealDefinition")
 go back: user.vscode("workbench.action.navigateBack")
 go forward: user.vscode("workbench.action.navigateForward")
-go implementation: user.vscode("editor.action.goToImplementation")
+go definition: key(f12)
 go type: user.vscode("editor.action.goToTypeDefinition")
 go usage: user.vscode("references-view.find")
 go recent [<user.text>]:
