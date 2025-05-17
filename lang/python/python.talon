@@ -62,3 +62,22 @@ flip comment:
 assign: insert(" = ")
 
 numpy | num pie: insert("numpy")
+
+insert parameters:
+    insert("Parameters")
+    key(enter)
+    insert("----------")
+    
+insert returns:
+    insert("Returns")
+    key(enter)
+    insert("-------")
+
+insert see also:
+    insert("See Also")
+    key(enter)
+    insert("--------")
+
+rest math: insert(":math:")
+rest function: insert(":func:")
+rest math paragraph: insert(".. math::")
