@@ -10,6 +10,8 @@ tag(): user.command_search
 
 flip comment: key(ctrl-1)
 repeat line: key(ctrl-alt-down)
+scoot down: key(alt-down)
+scoot up: key(alt-up)
 enter array: key(ctrl-m)
 assign: insert(" = ")
 completion: key(ctrl-space)
@@ -27,4 +29,4 @@ search in files: key(alt-shift-f)
 last edit: key(ctrl-alt-shift-left)
 
 go any: key(ctrl-p)
-
+go docs: key(ctrl-i)
