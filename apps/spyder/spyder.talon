@@ -14,9 +14,17 @@ scoot down: key(alt-down)
 scoot up: key(alt-up)
 enter array: key(ctrl-m)
 assign: insert(" = ")
+op star: insert(" * ")
+op times: insert(" * ")
+op divide: insert(" / ")
+op plus: insert(" + ")
+op minus: insert(" - ")
+op power: insert("**")
 completion: key(ctrl-space)
 
 auto format: key(ctrl-alt-i)
+
+eval: key(f9)
 
 run file: key(f5)
 debug file: key(ctrl-f5)
