@@ -38,3 +38,6 @@ last edit: key(ctrl-alt-shift-left)
 
 go any: key(ctrl-p)
 go docs: key(ctrl-i)
+
+up case: key(alt-shift-u)
+low case: key(alt-u)
