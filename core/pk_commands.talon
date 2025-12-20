@@ -1,6 +1,5 @@
-# Petr Krysl 2024: Useful commands 
+# Petr Krysl 2024-2025: Useful commands 
 os: windows
-os: linux
 -
 
 # some shortcuts
@@ -20,7 +19,7 @@ switch app: key(alt-tab)
 paste clip: key(ctrl-alt-v)
 
 # Use screen capture ScreenHunter
-snap it: key(ctrl-shift-f9)
+snap it: key(alt-ctrl-shift-9)
 
 # Insert line above or below
 line above: 
@@ -36,8 +35,5 @@ new paragraph:
     key(enter)    
     key(enter)    
 
-vir blank: insert(", ")
+comma blank: insert(", ")
 and: insert(" and ")
-
-# For debugging
-print application name: print(app.name())
