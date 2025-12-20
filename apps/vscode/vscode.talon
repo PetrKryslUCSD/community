@@ -39,7 +39,7 @@ bar source: user.vscode("workbench.view.scm")
 bar test: user.vscode("workbench.view.testing.focus")
 bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
 # Petr Krysl 2024
-sidebar: user.vscode("workbench.action.toggleSidebarVisibility") 
+sidebar: key(ctrl-b)
 
 # Symbol search
 symbol hunt [<user.text>]:
