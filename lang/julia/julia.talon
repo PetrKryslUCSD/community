@@ -176,7 +176,7 @@ to folder:
     key(end)
 
 
-# Petr Krysl 2024
+# Petr Krysl 2025
 
 # Running 
 eval: key(ctrl-enter)
@@ -196,13 +196,14 @@ run file:
     key(end)
 run [with path]:
     key(ctrl-s)
-    sleep(500ms)
+    sleep(1000ms)
     key(shift-alt-c)
     #user.vscode("Terminal: Focus Terminal")
     key(ctrl-`)
     sleep(1000ms)
     insert("include(raw\"")
-    sleep(500ms)
+    sleep(1000ms)
     key(shift-ctrl-v)
+    sleep(1000ms)
     insert("\")")
     key(end)
