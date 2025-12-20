@@ -100,3 +100,5 @@ up case: key(ctrl-alt-up)
 [book] mark set: key("alt-f11") 
 [book] mark previous: key("ctrl-shift-backspace")  
 [book] mark next: key("ctrl-shift-delete")  
+
+comment out: key(ctrl-alt-shift-right)
