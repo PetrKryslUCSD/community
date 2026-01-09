@@ -171,8 +171,8 @@ toggle parameters: user.idea("action ToggleInlineHintsAction")
 toggle fullscreen: user.idea("action ToggleFullScreen")
 toggle distraction [free mode]: user.idea("action ToggleDistractionFreeMode")
 toggle presentation [mode]: user.idea("action TogglePresentationMode")
-# Toggle additionals
-toggle comment: code.toggle_comment()
+# Toggle additionals Petr Krysl 2026
+flip comment: code.toggle_comment()
 # Quick popups
 change scheme: user.idea("action QuickChangeScheme")
 # Always javadoc
