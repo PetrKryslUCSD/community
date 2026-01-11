@@ -73,6 +73,8 @@ math prime:
     insert("\\prime")
 math partial:
     insert("\\partial")
+math integral:
+    insert("\\int_{{}}\\;\\mathrm{{d}}")    
 math sub:
     insert("_{}")
     key(left:1)
@@ -85,6 +87,12 @@ math big square:
 math array:
     insert("\\begin{{array}}{{}}\\end{{array}}") 
     key(left:12)
+math equation:
+    insert("\\begin{{equation}}\\label{{equation:}}") 
+    key(enter) 
+    key(enter) 
+    insert("\\end{{equation}}") 
+    key(up:1)
 latex begin:
     insert("\\begin{")
 math fraction:
