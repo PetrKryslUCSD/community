@@ -93,6 +93,12 @@ math equation:
     key(enter) 
     insert("\\end{{equation}}") 
     key(up:1)
+math equation array:
+    insert("\\begin{{eqnarray}}\\label{{equation:}}") 
+    key(enter) 
+    key(enter) 
+    insert("\\end{{eqnarray}}") 
+    key(up:1)
 latex begin:
     insert("\\begin{")
 math fraction:
