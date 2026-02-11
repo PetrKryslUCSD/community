@@ -36,4 +36,4 @@ new paragraph:
     key(enter)    
 
 comma blank: insert(", ")
-and: insert(" and ")
+say and: insert(" and ")
