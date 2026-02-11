@@ -10,7 +10,6 @@ code.language: julia
 tag(): terminal
 tag(): user.generic_unix_shell
 
-julia: insert("julia --project=. ")
 [funky] include: include("\(")
 
 # Petr Krysl 2024
