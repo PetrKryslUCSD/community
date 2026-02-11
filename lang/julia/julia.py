@@ -145,6 +145,9 @@ class UserActions:
     def code_operator_increment():
         actions.insert(' += 1')
 
+    def code_operator_in():
+        actions.auto_insert(" in ")
+
     def code_operator_assignment():
         actions.insert(' = ')
 
