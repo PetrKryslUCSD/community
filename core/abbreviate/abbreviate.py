@@ -109,7 +109,6 @@ abbreviations = {
     "definition": "def",
     "degree": "deg",
     "delete": "del",
-    'space': 'space',  
     "depend": "dep",
     "depends": "deps",
     "description": "desc",
@@ -448,6 +447,11 @@ abbreviations = {
     "windows kernel": "ntoskrnl",
     "work in progress": "wip",
 }
+
+
+@mod.capture(rule="brief {user.abbreviation}")
+def abbreviation(m) -> str:
+    return m.abbreviation
 
 
 @track_csv_list(

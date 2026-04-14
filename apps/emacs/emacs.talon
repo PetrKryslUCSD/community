@@ -1,9 +1,5 @@
-os: windows
-win.title: /GNU Emacs/
+app: emacs
 -
-# Petr Krysl 2024
-# Specialized for windows, with the Emacs running under WSL
-# The context needs to be matched based on the title.
 
 tag(): user.tabs
 tag(): user.splits
@@ -12,9 +8,7 @@ tag(): user.line_commands
 # ----- GENERAL ----- #
 #suplex: key(ctrl-x)
 cancel: user.emacs("keyboard-quit")
-# Petr Krysl
-sark: key(ctrl-space)
-(exchange | ex mark): user.emacs("exchange-point-and-mark")
+exchange: user.emacs("exchange-point-and-mark")
 execute: user.emacs("execute-extended-command")
 execute {user.emacs_command}$: user.emacs(emacs_command)
 execute <user.text>$:
@@ -23,16 +17,6 @@ execute <user.text>$:
 evaluate | (evaluate | eval) (exper | expression): user.emacs("eval-expression")
 prefix: user.emacs_prefix()
 prefix <user.number_signed_small>: user.emacs_prefix(number_signed_small)
-
-# Petr Krysl 2024
-reggie: key(ctrl-=)
-cursors:
-    user.emacs("multiple-cursors")
-sword: key(ctrl->)
-dired:
-    user.emacs("dired")
-other dired:
-    key(ctrl-x 4 d)
 
 abort recursive [edit]: user.emacs("abort-recursive-edit")
 browse kill ring: user.emacs("browse-kill-ring")
@@ -53,7 +37,6 @@ file [loop] continue: user.emacs("fileloop-continue")
 go directory: user.emacs("dired-jump")
 other go directory: user.emacs("dired-jump-other-window")
 
-
 [toggle] debug on error: user.emacs("toggle-debug-on-error")
 [toggle] debug on quit: user.emacs("toggle-debug-on-quit")
 [toggle] input method: user.emacs("toggle-input-method")
@@ -66,18 +49,9 @@ manual <user.text>:
     user.insert_formatted(text, "DASH_SEPARATED")
 
 # BUFFER SWITCHING #
-switch buffer: user.emacs("switch-to-buffer")
+switch: user.emacs("switch-to-buffer")
 other switch: user.emacs("switch-to-buffer-other-window")
 display: user.emacs("display-buffer")
-# Petr Krysl 2024
-show buffers: key(ctrl-x ctrl-b)
-switch back: key(ctrl-x left)
-switch for: key(ctrl-x right)
-switch [menu]:
-    key("ctrl:down")
-    mouse_click(0)
-    key("ctrl:up")
-
 
 # SHELL COMMANDS #
 shell command: user.emacs("shell-command")
@@ -153,8 +127,6 @@ split widen [<number_small>]:
     user.emacs("enlarge-window-horizontally", number_small or 1)
 split narrow [<number_small>]:
     user.emacs("shrink-window-horizontally", number_small or 1)
-split two columns: key(ctrl-x 3)
-split two rows: key(ctrl-x 2)
 
 # ----- HELP ----- #
 apropos: user.emacs_help("a")
@@ -222,7 +194,7 @@ auto indent: user.emacs("indent-region")
 indent <user.number_signed_small>: user.emacs("indent-rigidly", number_signed_small)
 
 search back: user.emacs("isearch-backward")
-(search regex | regex search): user.emacs("isearch-forward-regexp")
+search regex | regex search: user.emacs("isearch-forward-regexp")
 (search regex | regex search) back: user.emacs("isearch-backward-regexp")
 replace: user.emacs("query-replace")
 replace regex | regex replace: user.emacs("query-replace-regexp")
@@ -324,15 +296,7 @@ rectangle number lines: user.emacs("rectangle-number-lines")
 [xref] find references [and] replace: user.emacs("xref-find-references-and-replace")
 xref find apropos: user.emacs("xref-find-apropos")
 xref go back: user.emacs("xref-go-back")
-# Petr Krysl 2024
 visit tags table: user.emacs("visit-tags-table")
-create tags table: user.emacs("create-tags-table")
-# abbreviation
-visit: user.emacs("xref-find-definitions")
-other visit: user.emacs("xref-find-definitions-other-window")
-where be: user.emacs("xref-find-references")
-jump back:  user.emacs_meta(",")
-jump for:  user.emacs_meta("ctrl-,")
 
 # ----- PROJECT SUPPORT ----- #
 project [find] file: user.emacs("project-find-file")
@@ -353,11 +317,6 @@ project switch [project]: user.emacs("project-switch-project")
 
 # ----- VC/GIT SUPPORT ----- #
 vc (annotate | blame): user.emacs("vc-annotate")
-ma git status: user.emacs("magit-status")
-ma git clone: user.emacs("magit-clone")
-ma git save and out: 
-    key(ctrl-x ctrl-s)
-    key(ctrl-c ctrl-c)
 
 # ----- MAJOR & MINOR MODES ----- #
 # python-mode #
@@ -407,30 +366,3 @@ outline demote: user.emacs("outline-demote")
 outline move [subtree] down: user.emacs("outline-move-subtree-down")
 outline move [subtree] up: user.emacs("outline-move-subtree-up")
 outline mark [subtree]: user.emacs("outline-mark-subtree")
-
-# terminal
-terminal: 
-    user.emacs("ansi-term")
-julia ripple: 
-    user.emacs("julia-repl")
-
-# Type confirmation    
-yes: insert("yes")
-
-# Commenting Out
-flip comment:
-    key(ctrl-x)
-    key(ctrl-;)
-tail comment:
-    key(end)
-    insert(" # ")
-
-# Capitalization
-up case: key(ctrl-x ctrl-u)
-low case: key(ctrl-x ctrl-l)
-tit case: user.emacs("capitalize-region")
-
-# Hippie Completion
-hip: key(alt-/)
-
-# 

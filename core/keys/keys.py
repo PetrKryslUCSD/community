@@ -1,6 +1,19 @@
 from talon import Context, Module, actions, app
 
+from .symbols import (
+    dragon_punctuation_dict,
+    punctuation_dict,
+    symbol_key_dict,
+)
+
 mod = Module()
+ctx = Context()
+
+ctx_dragon = Context()
+ctx_dragon.matches = r"""
+speech.engine: dragon
+"""
+
 mod.list("letter", desc="The spoken phonetic alphabet")
 mod.list("symbol_key", desc="All symbols from the keyboard")
 mod.list("arrow_key", desc="All arrow keys")
@@ -103,137 +116,13 @@ def letters(m) -> str:
     return "".join(m.letter_list)
 
 
-ctx = Context()
+@mod.action_class
+class Actions:
+    def get_punctuation_words():
+        """Gets the user.punctuation list"""
+        return punctuation_dict
 
-# `punctuation_words` is for words you want available BOTH in dictation and as key names in command mode.
-# `symbol_key_words` is for key names that should be available in command mode, but NOT during dictation.
-punctuation_words = {
-    # TODO: I'm not sure why we need these, I think it has something to do with
-    # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    "`": "`",
-    ",": ",",  # <== these things
-    "back tick": "`",
-    "comma": ",",
-    # Workaround for issue with conformer b-series; see #946
-    "coma": ",",
-    "period": ".",
-    "full stop": ".",
-    "semicolon": ";",
-    "colon": ":",
-    "forward slash": "/",
-    "question mark": "?",
-    "exclamation mark": "!",
-    "exclamation point": "!",
-    "asterisk": "*",
-    "hash sign": "#",
-    "number sign": "#",
-    "percent sign": "%",
-    "at sign": "@",
-    "and sign": "&",
-    "ampersand": "&",
-    # Currencies
-    "dollar sign": "$",
-    "pound sign": "£",
-    "hyphen": "-",
-    "L paren": "(",
-    "left paren": "(",
-    "R paren": ")",
-    "right paren": ")",
-    "be tick": "`",  # Petr Krysl, 2022
-    "dot drop": ";",  # Petr Krysl, 2023
-    "two dots": ":",  # Petr Krysl, 2023
-    "quest": "?",  # Petr Krysl, 2022
-    "bang": "!",  # Petr Krysl, 2022
-    "star": "*",  # Petr Krysl, 2022
-    "sharp": "#",  # Petr Krysl, 2022
-    "Percy": "%",  # Petr Krysl, 2022
-    "swirl": "@",  # Petr Krysl, 2022
-    "amper": "&",  # Petr Krysl, 2022
-    "dolly": "$",  # Petr Krysl, 2022
-}
-symbol_key_words = {
-    "dot": ".",
-    "point": ".",
-    "quote": "'",
-    "question": "?",
-    "apostrophe": "'",
-    "L square": "[",
-    "left square": "[",
-    "brack": "[",
-    "bracket": "[",
-    "left bracket": "[",
-    "square": "[",
-    "R square": "]",
-    "right square": "]",
-    "r brack": "]",
-    "r bracket": "]",
-    "right bracket": "]",
-    "slash": "/",
-    "backslash": "\\",
-    "whack": "\\",  # Petr Krysl, 2022
-    "minus": "-",
-    "dash": "-",
-    "equals": "=",
-    "plus": "+",
-    "grave": "`",
-    "tilde": "~",
-    "bang": "!",
-    "down score": "_",
-    "underscore": "_",
-    "paren": "(",
-    # "brace": "{", # Petr Krysl, 2025. This is getting mixed up with "phrase".
-    # "left brace": "{",
-    # "curly bracket": "{",
-    # "left curly bracket": "{",
-    # "r brace": "}",
-    # "right brace": "}",
-    # "r curly bracket": "}",
-    # "right curly bracket": "}",
-    # "angle": "<",
-    # "left angle": "<",
-    "less than": "<",
-    # "rangle": ">",
-    # "R angle": ">",
-    # "right angle": ">",
-    "greater than": ">",
-    "star": "*",
-    "hash": "#",
-    "percent": "%",
-    "caret": "^",
-    "amper": "&",
-    "pipe": "|",
-    "dub quote": '"',
-    "double quote": '"',
-    # Currencies
-    "dollar": "$",
-    "pound": "£",
-    "bee tick": "`",  # Petr Krysl, 2024
-    "wink": ";",  # Petr Krysl, 2024
-    "trophy": "'",  # Petr Krysl, 2024
-    "equals": "=",  # Petr Krysl, 2024
-    "plus": "+",  # Petr Krysl, 2024
-    "quest": "?",  # Petr Krysl, 2024
-    "squiggle": "~",  # Petr Krysl, 2024
-    "dolly": "$",  # Petr Krysl, 2024
-    "score": "_",  # Petr Krysl, 2024
-    "open square": "[",  # Petr Krysl, 2024
-    "close square": "]",  # Petr Krysl, 2024
-    "open par": "(",  # Petr Krysl, 2024
-    "close par": ")",  # Petr Krysl, 2024
-    "open curly": "{",  # Petr Krysl, 2024
-    "close curly": "}",  # Petr Krysl, 2024
-    "open fork": "<",  # Petr Krysl, 2024
-    "close fork": ">",  # Petr Krysl, 2024
-    "hat": "^",  # Petr Krysl, 2024
-    "swirl": "@",  # Petr Krysl, 2024
-    "quote": '"',  # Petr Krysl, 2024
-    "quote mark": '"',  # Petr Krysl, 2024
-    "star": "*",  # Petr Krysl, 2024w
-    "hash": "#",  # Petr Krysl, 2024
-    "Percy": "%",  # Petr Krysl, 2024
-}
 
-# make punctuation words also included in {user.symbol_keys}
-symbol_key_words.update(punctuation_words)
-ctx.lists["self.punctuation"] = punctuation_words
-ctx.lists["self.symbol_key"] = symbol_key_words
+ctx.lists["user.punctuation"] = punctuation_dict
+ctx.lists["user.symbol_key"] = symbol_key_dict
+ctx_dragon.lists["user.punctuation"] = dragon_punctuation_dict

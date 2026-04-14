@@ -1,4 +1,4 @@
-# Petr Krysl 2024-2025: Useful commands 
+# Petr Krysl 2024-2026: Useful commands 
 os: windows
 -
 

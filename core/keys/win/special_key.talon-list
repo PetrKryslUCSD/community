@@ -2,7 +2,6 @@ list: user.special_key
 os: windows
 os: linux
 -
-# Petr Krysl delete and backspace
 
 end: end
 home: home
@@ -10,15 +9,16 @@ minus: minus
 enter: enter
 page down: pagedown
 page up: pageup
-escape: escape
 space: space
 tab: tab
 insert: insert
 wipe: backspace
 delete: backspace
-smack: backspace
-strike: delete
+forward delete: delete
 menu key: menu
 print screen: printscr
 
-    
+# Krysl 2026
+smack: backspace 
+strike: delete
+escape: escape

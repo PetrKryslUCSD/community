@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: Owlery
+-
+user: C:\Users\pkonl
+desktop: C:\Users\pkonl\Desktop
+desk: C:\Users\pkonl\Desktop
+documents: C:\Users\pkonl\Documents
+docks: C:\Users\pkonl\Documents
+downloads: C:\Users\pkonl\Downloads
+music: C:\Users\pkonl\Music
+pictures: C:\Users\pkonl\Pictures
+videos: C:\Users\pkonl\Videos
+talon home: C:\Users\pkonl\AppData\Roaming\talon
+talon recordings: C:\Users\pkonl\AppData\Roaming\talon\recordings
+talon user: C:\Users\pkonl\AppData\Roaming\talon\user
+profile: C:\Users\pkonl

@@ -2,12 +2,10 @@ app: vscode
 # Looks for special string in window title.
 # NOTE: This requires you to add a special setting to your VSCode settings.json
 # See [our vscode docs](./README.md#terminal)
-# "window.title": "${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}focus:${focusedView}",
-win.title: /focus:Terminal/
+win.title: /focus:\[Terminal\]/
+code.language: plaintext
 -
-# Julia terminal
 tag(): terminal
-tag(): user.generic_unix_shell
 
 julia: insert("julia --project=. ")
 
