@@ -1,6 +1,9 @@
 app: xplorer2
 -
+tag(): user.address
 tag(): user.file_manager
+tag(): user.navigation
+
 action(user.file_manager_go_back):
     key("alt-left")
 action(user.file_manager_go_forward):
@@ -12,6 +15,7 @@ action(user.file_manager_open_parent):
 go app data: user.file_manager_open_directory("%AppData%")
 go drop box: user.file_manager_open_directory("Dropbox")
 go program files: user.file_manager_open_directory("%programfiles%")
+
 
 # Petr Krysl 2021
 # Q: Could I also ask about the title bar of the window: could I set it to whatever I want?

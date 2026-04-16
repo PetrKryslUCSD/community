@@ -1,6 +1,6 @@
-from talon import Context, Module, actions, imgui, settings, ui, app
-
 import os
+
+from talon import Context, Module, actions, app, ui
 
 mod = Module()
 apps = mod.apps
@@ -12,9 +12,18 @@ apps = mod.apps
 # A: There is a registry tweak called DPF_NOTITLE, you can look it 
 # up in a file called REGISTRY.TXT in the xplorer2 installation folder,
 # but to turn it on requires registry editing after you quit xplorer2. 
-apps.xplorer2 = """
+apps.xplorer2 = r"""
 os: windows
 and app.name: /xplorer².*/
+"""
+
+# many commands should work in most save/open dialog.
+# note the "show options" stuff won't work
+# unless the path is displayed in the title, which is rare for those
+apps.windows_file_browser = """
+os: windows
+and app.name: /.*/
+and title: /(Save|Open|Browse|Select)/
 """
 
 ctx = Context()
@@ -41,12 +50,13 @@ if app.platform == "windows":
     one_drive_path = os.path.expanduser(os.path.join("~", "OneDrive"))
 
     # this is probably not the correct way to check for onedrive, quick and dirty
+    
+    # Petr Krysl 2026: I have OneDrive, but I don't want to use it for my documents, so I'm ignoring it here. You can change that if you want to.
+    #     if os.path.isdir(os.path.expanduser(os.path.join("~", r"OneDrive\Desktop"))):
     if False: #os.path.isdir(os.path.expanduser(os.path.join("~", r"OneDrive\Desktop"))):
-        print("Have OneDrive")
-        default_folder = os.path.join("~", "Desktop")
         directories_to_remap = {
-            "Desktop": os.path.join(user_path, "Desktop"),
-            "Documents": os.path.join(user_path, "Documents"),
+            "Desktop": os.path.join(one_drive_path, "Desktop"),
+            "Documents": os.path.join(one_drive_path, "Documents"),
             "Downloads": os.path.join(user_path, "Downloads"),
             "Music": os.path.join(user_path, "Music"),
             "OneDrive": one_drive_path,
@@ -54,14 +64,13 @@ if app.platform == "windows":
             "Videos": os.path.join(user_path, "Videos"),
         }
     else:
-        print("Ignoring OneDrive")
-        # todo use expanduser for cross platform support
+        print('User path:', user_path)
         directories_to_remap = {
             "Desktop": os.path.join(user_path, "Desktop"),
             "Documents": os.path.join(user_path, "Documents"),
             "Downloads": os.path.join(user_path, "Downloads"),
             "Music": os.path.join(user_path, "Music"),
-            "OneDrive": one_drive_path,
+            # "OneDrive": one_drive_path,
             "Pictures": os.path.join(user_path, "Pictures"),
             "Videos": os.path.join(user_path, "Videos"),
         }
@@ -81,7 +90,11 @@ if app.platform == "windows":
 
 
 @ctx.action_class("user")
-class user_actions:
+class UserActions:
+
+    def file_manager_open_parent():
+        actions.key("alt-up")
+
     def file_manager_current_path():
         path = ui.active_window().title
 
@@ -95,7 +108,9 @@ class user_actions:
         return path
 
     def file_manager_terminal_here():
-        actions.key("f10")
+        actions.key("ctrl-l")
+        actions.insert("cmd.exe")
+        actions.key("enter")
 
     def file_manager_show_properties():
         """Shows the properties for the file"""
@@ -103,9 +118,11 @@ class user_actions:
 
     def file_manager_open_directory(path: str):
         """opens the directory that's already visible in the view"""
-        # xplorer2 has a special key for that (not ctrl-L!)
+        print('Opening directory:', path)
+        print('Remapped path:', directories_to_remap.get(path, path)) 
+        # actions.key("ctrl-l")
         actions.key("shift-tab")
-        actions.insert(path)
+        actions.insert(directories_to_remap.get(path, path))
         actions.key("enter")
 
     def file_manager_select_directory(path: str):
@@ -116,6 +133,7 @@ class user_actions:
         """Creates a new folder in a gui filemanager or inserts the command to do so for terminals"""
         # xplorer2 has a special key for that
         actions.key("home")
+        # actions.key("ctrl-shift-n")
         actions.key("f8")
         actions.insert(name)
 
@@ -133,3 +151,13 @@ class user_actions:
     def file_manager_open_volume(volume: str):
         """file_manager_open_volume"""
         actions.user.file_manager_open_directory(volume)
+
+    def address_focus():
+        actions.key("ctrl-l")
+
+    def address_copy_address():
+        actions.key("ctrl-l")
+        actions.edit.copy()
+
+    def address_navigate(address: str):
+        actions.user.file_manager_open_directory(address)
