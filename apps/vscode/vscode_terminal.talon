@@ -3,7 +3,6 @@ app: vscode
 # NOTE: This requires you to add a special setting to your VSCode settings.json
 # See [our vscode docs](./README.md#terminal)
 win.title: /focus:\[Terminal\]/
-code.language: plaintext
 -
 tag(): terminal
 

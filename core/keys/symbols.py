@@ -74,7 +74,7 @@ symbols = [
     Symbol("=", None, ["equals"]),
     Symbol("+", None, ["plus"]),
     Symbol("~", None, ["tilde", "squiggle"]), # Krysl 2026
-    Symbol("_", None, ["down score", "underscore"]),
+    Symbol("_", None, ["down score", "underscore", "score"]),
     Symbol("(", ["paren", "L paren", "left paren", "open par"]), # Krysl 2026
     Symbol(")", ["R paren", "right paren", "close par"]), # Krysl 2026
     Symbol("[", None,["brack", "L brack", "bracket", "L bracket", "left bracket", "square", "L square", "left square", "open square"],),  # Krysl 2026
