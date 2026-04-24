@@ -49,7 +49,7 @@ class Symbol:
             )
 
 currency_symbols = [
-    Symbol("$", ["dollar sign"], ["dollar"]),
+    Symbol("$", ["dollar sign"], ["dollar", "dolly"]),
     Symbol("£", ["pound sign"], ["pound"]),
     Symbol("€", ["euro sign"], ["euro"]),
 ]
