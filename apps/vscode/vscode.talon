@@ -194,9 +194,14 @@ scoot down:
     key(alt-down)
 # Indentation
 no indent: key(shift-tab:6)
-reformat: user.vscode("Format Selection")
+reformat: 
+    key(ctrl-shift-p)
+    insert("Format Selection")
+    key(enter)
 recenter: 
-    user.vscode("Recenter Top Bottom")
+    key(ctrl-shift-p)
+    insert("Recenter Top Bottom")
+    key(enter)
 
 # Searching Petr Krysl 2024
 search in files:
