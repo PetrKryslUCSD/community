@@ -1,304 +1,286 @@
-from talon import Module, Context, actions, ui, imgui, settings
+import re
+from contextlib import suppress
+
+from talon import Context, Module, actions, settings
+
+from ...core.described_functions import create_described_insert_between
+from ..tags.generic_types import (
+    SimpleLanguageSpecificTypeConnector,
+    format_type_parameter_arguments,
+)
+from ..tags.operators import Operators
 
 mod = Module()
-
 ctx = Context()
-
 ctx.matches = r"""
 code.language: julia
 """
 
-ctx.tags = [
-"user.code_imperative",
-"user.code_comment_line",
-"user.code_comment_block_c_like",
-"user.code_comment_documentation",
-"user.code_data_bool",
-"user.code_functions",
-"user.code_functions_gui",
-"user.code_libraries",
-"user.code_libraries_gui",
-"user.code_operators_array",
-"user.code_operators_assignment",
-"user.code_operators_bitwise",
-"user.code_operators_math",
+"""a set of fields used in julia docstrings that will follow the
+reStructuredText format"""
+docstring_fields = {
+    "class": ":class:",
+    "function": ":func:",
+    "parameter": ":param:",
+    "raise": ":raise:",
+    "returns": ":return:",
+    "type": ":type:",
+    "return type": ":rtype:",
+    # these are sphinx-specific
+    "see also": ".. seealso:: ",
+    "notes": ".. notes:: ",
+    "warning": ".. warning:: ",
+    "todo": ".. todo:: ",
+}
+
+mod.list("julia_docstring_fields", desc="julia docstring fields")
+ctx.lists["user.julia_docstring_fields"] = docstring_fields
+
+exception_list = [
+    "BaseException",
+    "SystemExit",
+    "KeyboardInterrupt",
+    "GeneratorExit",
+    "Exception",
+    "StopIteration",
+    "StopAsyncIteration",
+    "ArithmeticError",
+    "FloatingPointError",
+    "OverflowError",
+    "ZeroDivisionError",
+    "AssertionError",
+    "AttributeError",
+    "BufferError",
+    "EOFError",
+    "ImportError",
+    "ModuleNotFoundError",
+    "LookupError",
+    "IndexError",
+    "KeyError",
+    "MemoryError",
+    "NameError",
+    "UnboundLocalError",
+    "OSError",
+    "BlockingIOError",
+    "ChildProcessError",
+    "ConnectionError",
+    "BrokenPipeError",
+    "ConnectionAbortedError",
+    "ConnectionRefusedError",
+    "ConnectionResetError",
+    "FileExistsError",
+    "FileNotFoundError",
+    "InterruptedError",
+    "IsADirectoryError",
+    "NotADirectoryError",
+    "PermissionError",
+    "ProcessLookupError",
+    "TimeoutError",
+    "ReferenceError",
+    "RuntimeError",
+    "NotImplementedError",
+    "RecursionError",
+    "SyntaxError",
+    "IndentationError",
+    "TabError",
+    "SystemError",
+    "TypeError",
+    "ValueError",
+    "UnicodeError",
+    "UnicodeDecodeError",
+    "UnicodeEncodeError",
+    "UnicodeTranslateError",
+    "Warning",
+    "DeprecationWarning",
+    "PendingDeprecationWarning",
+    "RuntimeWarning",
+    "SyntaxWarning",
+    "UserWarning",
+    "FutureWarning",
+    "ImportWarning",
+    "UnicodeWarning",
+    "BytesWarning",
+    "ResourceWarning",
 ]
-
-ctx.lists['user.code_libraries'] = {
-    'linear algebra': 'LinearAlgebra',
-    'fine tools': 'FinEtools',
-    'are pack': 'Arpack',
-    'revise': 'Revise',
+mod.list("julia_exception", desc="julia exceptions")
+ctx.lists["user.julia_exception"] = {
+    " ".join(re.findall("[A-Z][^A-Z]*", exception)).lower(): exception
+    for exception in exception_list
 }
 
-ctx.lists['user.code_common_function'] = {
-    "abs": "abs",
-    "axes": "axes",
-    "all run": "allrun",
-    "broadcast": "broadcast",
-    "change folder": "cd",
-    "collect": "collect",
-    "conn as array": "connasarray",
-    "conjugate": "conj",
-    "copy to": "copyto!",
-    "correlation": "cor",
-    "cosine": "cos",
-    "count": "count",
-    "covariance": "cov",
-    "deep copy": "deepcopy",
-    "det": "det",
-    "dict": "Dict",
-    "diff": "diff",
-    "difference": "diff",
-    "display": "display",
-    "dot": "dot",
-    "each index": "eachindex",
-    "eigen": "eigen",
-    "ell type": "eltype",
-    "element type": "eltype",
-    "enumerate": "enumerate",
-    "figure": "figure",
-    "fill in place": "fill!",
-    "fill": "fill",
-    "find all": "findall",
-    "for each": "foreach",
-    "get": "get",
-    "has key": "haskey",
-    "hoe cat": "hcat",
-    "imag": "imag",
-    "include": "include",
-    "is a prox": "isapprox",
-    "isempty": "is empty",
-    "join path": "joinpath",
-    "last index": "lastindex",
-    "first index": "firstindex",
-    "len": "length",
-    "length": "length",
-    "log": "log",
-    "max": "max",
-    "maximum": "maximum",
-    "mean": "mean",
-    "min": "min",
-    "minimum": "minimum",
-    "norm": "norm",
-    "one": "one",
-    "open": "open",
-    "fun": "phun",
-    "pairs": "pairs",
-    "parse": "parse",
-    "plot": "plot",
-    "print": "print",
-    "print line": "println",
-    "push": "push!",
-    "rand": "rand",
-    "random": "rand",
-    "lynn space": "range",
-    "range": "range",
-    "round": "round",
-    "real": "real",
-    "reshape": "reshape",
-    "scatter": "scatter",
-    "similar": "similar",
-    "sine": "sin",
-    "size": "size",
-    "sort": "sort",
-    "squirt": "sqrt",
-    "square root": "sqrt",
-    "squeeze": "squeeze",
-    "sub set": "subset",
-    "subset": "subset",
-    "sum": "sum",
-    "summary": "summary",
-    "time": "time",
-    "time nano": "time_ns",
-    "trace": "tr",
-    "transpose": "transpose",
-    "type of": "typeof",
-    "unique": "unique",
-    "vee cat": "vcat",
-    "vec": "vec",
-    "vector": "vec",
-    "view": "view",
-    "zero": "zero",
-    "zeros": "zeros",
-    "zip": "zip",
+# This is not part of the long term stable API
+# After we implement generics support for several languages,
+# we plan on abstracting out from the specific implementations into a general grammar
+
+mod.list(
+    "julia_generic_type", desc="A julia type that takes type parameter arguments"
+)
+
+# this should be moved to a talon-list file after this becomes stable
+ctx.lists["user.julia_generic_type"] = {
+    "dictionary": "dict",
+    "iterable": "Iterable",
+    "set": "Set",
+    "tuple": "Tuple",
+    "union": "Union",
 }
 
-ctx.lists['user.code_type'] = {
-    'float sixty four': 'Float64',
-    'int sixty four': 'i64',
-    'boolean': 'Bool',
-    'string': 'string',
-}
 
-@ctx.action_class('user')
+@ctx.capture(
+    "user.generic_type_parameter_argument", rule="<user.code_type> | [type] <user.text>"
+)
+def generic_type_parameter_argument(m) -> str:
+    """A julia type parameter for a generic data structure"""
+    with suppress(AttributeError):
+        return m.code_type
+    return actions.user.formatted_text(m.text, "PUBLIC_CAMEL_CASE")
+
+
+@ctx.capture(
+    "user.generic_data_structure",
+    rule="{user.julia_generic_type} | [type] <user.text>",
+)
+def generic_data_structure(m) -> str:
+    """A julia generic data structure that takes type parameter arguments"""
+    with suppress(AttributeError):
+        return m.julia_generic_type
+    return actions.user.formatted_text(m.text, "PUBLIC_CAMEL_CASE")
+
+
+@ctx.capture(
+    "user.generic_type_connector", rule="<user.common_generic_type_connector>|or"
+)
+def generic_type_connector(m) -> SimpleLanguageSpecificTypeConnector:
+    """A julia specific type connector for union types"""
+    with suppress(AttributeError):
+        return m.common_generic_type_connector
+    return SimpleLanguageSpecificTypeConnector(" | ")
+
+
+@ctx.capture(
+    "user.generic_type_parameter_arguments",
+    rule="<user.generic_type_parameter_argument> [<user.generic_type_additional_type_parameters>]",
+)
+def generic_type_parameter_arguments(m) -> str:
+    return format_type_parameter_arguments(m, ", ", "[", "]")
+
+
+@mod.capture(
+    rule="<user.generic_data_structure> of <user.generic_type_parameter_arguments>"
+)
+def julia_generic_type(m) -> str:
+    """A generic type with specific type parameters"""
+    parameters = m.generic_type_parameter_arguments
+    return f"{m.generic_data_structure}[{parameters}]"
+
+
+# End of unstable section
+
+operators = Operators(
+    # code_operators_array
+    SUBSCRIPT=create_described_insert_between("[", "]"),
+    # code_operators_assignment
+    ASSIGNMENT=" = ",
+    ASSIGNMENT_SUBTRACTION=" -= ",
+    ASSIGNMENT_ADDITION=" += ",
+    ASSIGNMENT_MULTIPLICATION=" *= ",
+    ASSIGNMENT_DIVISION=" /= ",
+    ASSIGNMENT_MODULO=" %= ",
+    ASSIGNMENT_INCREMENT=" += 1",
+    ASSIGNMENT_BITWISE_AND=" &= ",
+    ASSIGNMENT_BITWISE_OR=" |= ",
+    ASSIGNMENT_BITWISE_EXCLUSIVE_OR=" ^= ",
+    ASSIGNMENT_BITWISE_LEFT_SHIFT=" <<= ",
+    ASSIGNMENT_BITWISE_RIGHT_SHIFT=" >>= ",
+    # code_operators_bitwise
+    BITWISE_NOT="~",
+    BITWISE_AND=" & ",
+    BITWISE_OR=" | ",
+    BITWISE_EXCLUSIVE_OR=" ^ ",
+    BITWISE_LEFT_SHIFT=" << ",
+    BITWISE_RIGHT_SHIFT=" >> ",
+    # code_operators_lambda
+    LAMBDA=create_described_insert_between("lambda ", ": "),
+    # code_operators_math
+    MATH_SUBTRACT=" - ",
+    MATH_ADD=" + ",
+    MATH_MULTIPLY=" * ",
+    MATH_DIVIDE=" / ",
+    MATH_INTEGER_DIVIDE=" // ",
+    MATH_MODULO=" % ",
+    MATH_EXPONENT=" ** ",
+    MATH_EQUAL=" == ",
+    MATH_NOT_EQUAL=" != ",
+    MATH_GREATER_THAN=" > ",
+    MATH_GREATER_THAN_OR_EQUAL=" >= ",
+    MATH_LESS_THAN=" < ",
+    MATH_LESS_THAN_OR_EQUAL=" <= ",
+    MATH_AND=" and ",
+    MATH_OR=" or ",
+    MATH_NOT=" not ",
+    MATH_IN=" in ",
+    MATH_NOT_IN=" not in ",
+)
+
+
+@ctx.action_class("user")
 class UserActions:
-    def code_operator_lambda():
-        actions.insert('() -> ')
-        actions.edit.left()
-        actions.edit.left()
+    def code_get_operators() -> Operators:
+        return operators
 
-    def code_operator_subscript():
-        actions.insert('[]')
-        actions.edit.left()
-
-    def code_operator_increment():
-        actions.insert(' += 1')
-
-    def code_operator_in():
-        actions.auto_insert(" in ")
-
-    def code_operator_assignment():
-        actions.insert(' = ')
-
-    def code_operator_subtraction():
-        actions.insert(' - ')
-
-    def code_operator_subtraction_assignment():
-        actions.insert(' -= ')
-
-    def code_operator_addition():
-        actions.insert(' + ')
-
-    def code_operator_addition_assignment():
-        actions.insert(' += ')
-
-    def code_operator_multiplication():
-        actions.insert(' * ')
-
-    def code_operator_multiplication_assignment():
-        actions.insert(' *= ')
-
-    def code_operator_exponent():
-        actions.insert('.pow()');
-        actions.edit.left();
-
-    def code_operator_division():
-        actions.insert(' / ')
-
-    def code_operator_division_assignment():
-        actions.insert(' /= ')
-
-    def code_operator_modulo():
-        actions.insert(' % ')
-
-    def code_operator_modulo_assignment():
-        actions.insert(' %= ')
-
-    def code_operator_equal():
-        actions.insert(' == ')
-
-    def code_operator_not_equal():
-        actions.insert(' != ')
-
-    def code_operator_greater_than():
-        actions.insert(' > ')
-
-    def code_operator_greater_than_or_equal_to():
-        actions.insert(' >= ')
-
-    def code_operator_less_than():
-        actions.insert(' < ')
-
-    def code_operator_less_than_or_equal_to():
-        actions.insert(' <= ')
-
-    def code_operator_and():
-        actions.insert(' && ')
-
-    def code_operator_or():
-        actions.insert(' || ')
-
-    def code_operator_bitwise_and():
-        actions.insert(' & ')
-
-    def code_operator_bitwise_or():
-        actions.insert(' | ')
-
-    def code_operator_bitwise_exclusive_or():
-        actions.insert(' ^ ')
-
-    def code_operator_bitwise_left_shift():
-        actions.insert(' << ')
-
-    def code_operator_bitwise_left_shift_assignment():
-        actions.insert(' <<= ')
-
-    def code_operator_bitwise_right_shift():
-        actions.insert(' >> ')
-
-    def code_operator_bitwise_right_shift_assignment():
-        actions.insert(' >>= ')
+    def code_self():
+        actions.insert("self")
 
     def code_operator_object_accessor():
-        actions.insert('.')
+        actions.insert(".")
 
-    def code_state_switch():
-        actions.insert('match ')
+    def code_insert_null():
+        actions.insert("None")
 
-    def code_block():
-        actions.insert('{\n\n}')
-        actions.edit.left()
-        actions.edit.up()
-        actions.key('tab')
+    def code_insert_is_null():
+        actions.insert(" is None")
 
-    def code_import():
-        actions.insert('import ')
-
-    def code_comment_line_prefix():
-        actions.insert('#')
-
-    def code_comment_documentation():
-        actions.insert('""" ')
+    def code_insert_is_not_null():
+        actions.insert(" is not None")
 
     def code_insert_true():
-        actions.insert('true')
+        actions.insert("True")
 
     def code_insert_false():
-        actions.insert('false')
-
-    def code_state_if():
-        actions.insert('if ')
-
-    def code_state_else():
-        actions.insert('else ')
-
-    def code_state_else_if():
-        actions.insert('else if ')
-
-    def code_state_return():
-        actions.insert('return ')
+        actions.insert("False")
 
     def code_insert_function(text: str, selection: str):
-        actions.user.paste(f'{text}({selection or ""})')
+        text += f"({selection or ''})"
+        actions.user.paste(text)
         actions.edit.left()
 
-    def code_private_function(text: str):
-        actions.insert('')
-        formatter = settings.get('user.code_private_function_formatter')
-        function_name = actions.user.formatted_text(text, formatter)
-        actions.user.code_insert_function(function_name, None)
+    # def code_default_function(text: str):
+    #     actions.user.code_public_function(text)
 
-    def code_public_function(text: str):
-        actions.insert('s')
-        formatter = settings.get('user.code_public_function_formatter')
-        function_name = actions.user.formatted_text(text, formatter)
-        actions.user.code_insert_function(function_name, None)
+    # def code_private_function(text: str):
+    #     """Inserts private function declaration"""
+    #     result = "def _{}():".format(
+    #         actions.user.formatted_text(
+    #             text, settings.get("user.code_private_function_formatter")
+    #         )
+    #     )
 
-    def code_default_function(text: str):
-        actions.user.code_private_function(text)
+    #     actions.user.paste(result)
+    #     actions.edit.left()
+    #     actions.edit.left()
+
+    # def code_public_function(text: str):
+    #     result = "def {}():".format(
+    #         actions.user.formatted_text(
+    #             text, settings.get("user.code_public_function_formatter")
+    #         )
+    #     )
+    #     actions.user.paste(result)
+    #     actions.edit.left()
+    #     actions.edit.left()
 
     def code_insert_type_annotation(type: str):
-        actions.insert(f'::{type}')
+        actions.insert(f": {type}")
 
     def code_insert_return_type(type: str):
-        actions.insert(f' -> {type}')
-
-    def code_state_for():
-        actions.insert('for ')
-
-    def code_state_while():
-        actions.insert('while ')
-
-    def code_state_return():
-        actions.insert('return ')
+        actions.insert(f" -> {type}")

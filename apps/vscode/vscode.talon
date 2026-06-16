@@ -364,3 +364,541 @@ cell run: user.vscode("notebook.cell.execute")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+tit case: 
+    insert("Transform to Title Case")
+low case: 
+    insert("Transform to Lowercase")
+up case: 
+key(ctrl-shift-p)
+    insert("Format Selection")
+    key(enter)
+recenter: 
+    key(ctrl-shift-p)
+    insert("Recenter Top Bottom")
+    key(enter)
+
+# Searching Petr Krysl 2024
+search in files:
+    key(ctrl-shift-f)
+# Petr Krysl 2024
+quick search:
+    key(ctrl-shift-p)
+    key(backspace)
+    key(%)
+
+# Bookmarks. Requires Bookmarks plugin
+bar marks: user.vscode("workbench.view.extension.bookmarks")
+go marks:
+    user.deprecate_command("2023-06-06", "go marks", "bar marks")
+    user.vscode("workbench.view.extension.bookmarks")
+toggle mark: user.vscode("bookmarks.toggle")
+go next mark: user.vscode("bookmarks.jumpToNext")
+go last mark: user.vscode("bookmarks.jumpToPrevious")
+
+close other tabs: user.vscode("workbench.action.closeOtherEditors")
+close all tabs: user.vscode("workbench.action.closeAllEditors")
+close tabs way right: user.vscode("workbench.action.closeEditorsToTheRight")
+close tabs way left: user.vscode("workbench.action.closeEditorsToTheLeft")
+
+# Folding
+fold that: user.vscode("editor.fold")
+unfold that: user.vscode("editor.unfold")
+fold those: user.vscode("editor.foldAllMarkerRegions")
+unfold those: user.vscode("editor.unfoldRecursively")
+fold all: user.vscode("editor.foldAll")
+unfold all: user.vscode("editor.unfoldAll")
+fold comments: user.vscode("editor.foldAllBlockComments")
+fold one: user.vscode("editor.foldLevel1")
+fold two: user.vscode("editor.foldLevel2")
+fold three: user.vscode("editor.foldLevel3")
+fold four: user.vscode("editor.foldLevel4")
+fold five: user.vscode("editor.foldLevel5")
+fold six: user.vscode("editor.foldLevel6")
+fold seven: user.vscode("editor.foldLevel7")
+
+# Git / Github (not using verb-noun-adjective pattern, mirroring terminal commands.)
+git branch: user.vscode("git.branchFrom")
+git branch this: user.vscode("git.branch")
+git checkout [<user.text>]:
+    user.vscode("git.checkout")
+    sleep(50ms)
+    insert(text or "")
+git commit [<user.text>]:
+    user.vscode("git.commitStaged")
+    sleep(100ms)
+    user.insert_formatted(text or "", "CAPITALIZE_FIRST_WORD")
+git commit undo: user.vscode("git.undoCommit")
+git commit amend: user.vscode("git.commitStagedAmend")
+git diff: user.vscode("git.openChange")
+git fetch: user.vscode("git.fetch")
+git fetch all: user.vscode("git.fetchAll")
+git ignore: user.vscode("git.ignore")
+git merge: user.vscode("git.merge")
+git output: user.vscode("git.showOutput")
+git pull: user.vscode("git.pullRebase")
+git push: user.vscode("git.push")
+git push force: user.vscode("git.pushForce")
+git rebase abort: user.vscode("git.rebaseAbort")
+git reveal: user.vscode("git.revealInExplorer")
+git revert: user.vscode("git.revertChange")
+git stash: user.vscode("git.stash")
+git stash pop: user.vscode("git.stashPop")
+git status: user.vscode("workbench.scm.focus")
+git stage: user.vscode("git.stage")
+git stage all: user.vscode("git.stageAll")
+git sync: user.vscode("git.sync")
+git unstage: user.vscode("git.unstage")
+git unstage all: user.vscode("git.unstageAll")
+pull request: user.vscode("pr.create")
+# Use keyboard shortcuts because VSCode relies on when clause contexts to choose the appropriate
+# action: https://code.visualstudio.com/api/references/when-clause-contexts
+change next: key(alt-f5)
+change last: key(shift-alt-f5)
+
+# Testing
+test run: user.vscode("testing.runAtCursor")
+test run file: user.vscode("testing.runCurrentFile")
+test run all: user.vscode("testing.runAll")
+test run failed: user.vscode("testing.reRunFailTests")
+test run last: user.vscode("testing.reRunLastRun")
+
+test debug: user.vscode("testing.debugAtCursor")
+test debug file: user.vscode("testing.debugCurrentFile")
+test debug all: user.vscode("testing.debugAll")
+test debug failed: user.vscode("testing.debugFailTests")
+test debug last: user.vscode("testing.debugLastRun")
+
+test cancel: user.vscode("testing.cancelRun")
+
+# Debugging
+break point: user.vscode("editor.debug.action.toggleBreakpoint")
+step over: user.vscode("workbench.action.debug.stepOver")
+debug step into: user.vscode("workbench.action.debug.stepInto")
+debug step out [of]: user.vscode("workbench.action.debug.stepOut")
+debug start: user.vscode("workbench.action.debug.start")
+debug pause: user.vscode("workbench.action.debug.pause")
+debug stopper: user.vscode("workbench.action.debug.stop")
+debug continue: user.vscode("workbench.action.debug.continue")
+debug restart: user.vscode("workbench.action.debug.restart")
+debug console: user.vscode("workbench.debug.action.toggleRepl")
+debug clean: user.vscode("workbench.debug.panel.action.clearReplAction")
+
+# Terminal
+terminal external: user.vscode("workbench.action.terminal.openNativeConsole")
+terminal new: user.vscode("workbench.action.terminal.new")
+terminal next: user.vscode("workbench.action.terminal.focusNext")
+terminal last: user.vscode("workbench.action.terminal.focusPrevious")
+terminal split: user.vscode("workbench.action.terminal.split")
+terminal zoom: user.vscode("workbench.action.toggleMaximizedPanel")
+terminal trash: user.vscode("workbench.action.terminal.kill")
+terminal toggle: user.vscode_and_wait("workbench.action.terminal.toggleTerminal")
+terminal scroll up: user.vscode("workbench.action.terminal.scrollUp")
+terminal scroll down: user.vscode("workbench.action.terminal.scrollDown")
+terminal <number_small>: user.vscode_terminal(number_small)
+
+task run [<user.text>]:
+    user.vscode("workbench.action.tasks.runTask")
+    insert(user.text or "")
+copy line down: user.vscode("editor.action.copyLinesDownAction")
+copy line up: user.vscode("editor.action.copyLinesUpAction")
+
+#Expand/Shrink AST Selection
+select less: user.vscode("editor.action.smartSelect.shrink")
+select (more | this): user.vscode("editor.action.smartSelect.expand")
+
+minimap: user.vscode("editor.action.toggleMinimap")
+maximize: user.vscode("workbench.action.minimizeOtherEditors")
+restore: user.vscode("workbench.action.evenEditorWidths")
+
+#breadcrumb
+select breadcrumb: user.vscode("breadcrumbs.focusAndSelect")
+# Use `alt-left` and `alt-right` to navigate the bread crumb
+
+replace here:
+    user.replace("")
+    key(cmd-alt-l)
+
+hover show: user.vscode("editor.action.showHover")
+
+join lines: user.vscode("editor.action.joinLines")
+
+full screen: user.vscode("workbench.action.toggleFullScreen")
+
+curse undo: user.vscode("cursorUndo")
+curse redo: user.vscode("cursorRedo")
+
+select word: user.vscode("editor.action.addSelectionToNextFindMatch")
+skip word: user.vscode("editor.action.moveSelectionToNextFindMatch")
+
+# jupyter
+cell next: user.vscode("notebook.focusNextEditor")
+cell last: user.vscode("notebook.focusPreviousEditor")
+cell run above: user.vscode("notebook.cell.executeCellsAbove")
+cell run: user.vscode("notebook.cell.execute")
+
+install local: user.vscode("workbench.extensions.action.installVSIX")
+preview markdown: user.vscode("markdown.showPreview")
+
+tit case: 
+    insert("Transform to Title Case")
+low case: 
+    insert("Transform to Lowercase")
+up case: 
+    key(ctrl-shift-p)
+    insert("Format Selection")
+    key(enter)
+recenter: 
+    key(ctrl-shift-p)
+    insert("Recenter Top Bottom")
+    key(enter)
+
+# Searching Petr Krysl 2024
+search in files:
+    key(ctrl-shift-f)
+# Petr Krysl 2024
+quick search:
+    key(ctrl-shift-p)
+    key(backspace)
+    key(%)
+
+# Bookmarks. Requires Bookmarks plugin
+bar marks: user.vscode("workbench.view.extension.bookmarks")
+go marks:
+    user.deprecate_command("2023-06-06", "go marks", "bar marks")
+    user.vscode("workbench.view.extension.bookmarks")
+toggle mark: user.vscode("bookmarks.toggle")
+go next mark: user.vscode("bookmarks.jumpToNext")
+go last mark: user.vscode("bookmarks.jumpToPrevious")
+
+close other tabs: user.vscode("workbench.action.closeOtherEditors")
+close all tabs: user.vscode("workbench.action.closeAllEditors")
+close tabs way right: user.vscode("workbench.action.closeEditorsToTheRight")
+close tabs way left: user.vscode("workbench.action.closeEditorsToTheLeft")
+
+# Folding
+fold that: user.vscode("editor.fold")
+unfold that: user.vscode("editor.unfold")
+fold those: user.vscode("editor.foldAllMarkerRegions")
+unfold those: user.vscode("editor.unfoldRecursively")
+fold all: user.vscode("editor.foldAll")
+unfold all: user.vscode("editor.unfoldAll")
+fold comments: user.vscode("editor.foldAllBlockComments")
+fold one: user.vscode("editor.foldLevel1")
+fold two: user.vscode("editor.foldLevel2")
+fold three: user.vscode("editor.foldLevel3")
+fold four: user.vscode("editor.foldLevel4")
+fold five: user.vscode("editor.foldLevel5")
+fold six: user.vscode("editor.foldLevel6")
+fold seven: user.vscode("editor.foldLevel7")
+
+# Git / Github (not using verb-noun-adjective pattern, mirroring terminal commands.)
+git branch: user.vscode("git.branchFrom")
+git branch this: user.vscode("git.branch")
+git checkout [<user.text>]:
+    user.vscode("git.checkout")
+    sleep(50ms)
+    insert(text or "")
+git commit [<user.text>]:
+    user.vscode("git.commitStaged")
+    sleep(100ms)
+    user.insert_formatted(text or "", "CAPITALIZE_FIRST_WORD")
+git commit undo: user.vscode("git.undoCommit")
+git commit amend: user.vscode("git.commitStagedAmend")
+git diff: user.vscode("git.openChange")
+git fetch: user.vscode("git.fetch")
+git fetch all: user.vscode("git.fetchAll")
+git ignore: user.vscode("git.ignore")
+git merge: user.vscode("git.merge")
+git output: user.vscode("git.showOutput")
+git pull: user.vscode("git.pullRebase")
+git push: user.vscode("git.push")
+git push force: user.vscode("git.pushForce")
+git rebase abort: user.vscode("git.rebaseAbort")
+git reveal: user.vscode("git.revealInExplorer")
+git revert: user.vscode("git.revertChange")
+git stash: user.vscode("git.stash")
+git stash pop: user.vscode("git.stashPop")
+git status: user.vscode("workbench.scm.focus")
+git stage: user.vscode("git.stage")
+git stage all: user.vscode("git.stageAll")
+git sync: user.vscode("git.sync")
+git unstage: user.vscode("git.unstage")
+git unstage all: user.vscode("git.unstageAll")
+pull request: user.vscode("pr.create")
+# Use keyboard shortcuts because VSCode relies on when clause contexts to choose the appropriate
+# action: https://code.visualstudio.com/api/references/when-clause-contexts
+change next: key(alt-f5)
+change last: key(shift-alt-f5)
+
+# Testing
+test run: user.vscode("testing.runAtCursor")
+test run file: user.vscode("testing.runCurrentFile")
+test run all: user.vscode("testing.runAll")
+test run failed: user.vscode("testing.reRunFailTests")
+test run last: user.vscode("testing.reRunLastRun")
+
+test debug: user.vscode("testing.debugAtCursor")
+test debug file: user.vscode("testing.debugCurrentFile")
+test debug all: user.vscode("testing.debugAll")
+test debug failed: user.vscode("testing.debugFailTests")
+test debug last: user.vscode("testing.debugLastRun")
+
+test cancel: user.vscode("testing.cancelRun")
+
+# Debugging
+break point: user.vscode("editor.debug.action.toggleBreakpoint")
+step over: user.vscode("workbench.action.debug.stepOver")
+debug step into: user.vscode("workbench.action.debug.stepInto")
+debug step out [of]: user.vscode("workbench.action.debug.stepOut")
+debug start: user.vscode("workbench.action.debug.start")
+debug pause: user.vscode("workbench.action.debug.pause")
+debug stopper: user.vscode("workbench.action.debug.stop")
+debug continue: user.vscode("workbench.action.debug.continue")
+debug restart: user.vscode("workbench.action.debug.restart")
+debug console: user.vscode("workbench.debug.action.toggleRepl")
+debug clean: user.vscode("workbench.debug.panel.action.clearReplAction")
+
+# Terminal
+terminal external: user.vscode("workbench.action.terminal.openNativeConsole")
+terminal new: user.vscode("workbench.action.terminal.new")
+terminal next: user.vscode("workbench.action.terminal.focusNext")
+terminal last: user.vscode("workbench.action.terminal.focusPrevious")
+terminal split: user.vscode("workbench.action.terminal.split")
+terminal zoom: user.vscode("workbench.action.toggleMaximizedPanel")
+terminal trash: user.vscode("workbench.action.terminal.kill")
+terminal toggle: user.vscode_and_wait("workbench.action.terminal.toggleTerminal")
+terminal scroll up: user.vscode("workbench.action.terminal.scrollUp")
+terminal scroll down: user.vscode("workbench.action.terminal.scrollDown")
+terminal <number_small>: user.vscode_terminal(number_small)
+
+task run [<user.text>]:
+    user.vscode("workbench.action.tasks.runTask")
+    insert(user.text or "")
+copy line down: user.vscode("editor.action.copyLinesDownAction")
+copy line up: user.vscode("editor.action.copyLinesUpAction")
+
+#Expand/Shrink AST Selection
+select less: user.vscode("editor.action.smartSelect.shrink")
+select (more | this): user.vscode("editor.action.smartSelect.expand")
+
+minimap: user.vscode("editor.action.toggleMinimap")
+maximize: user.vscode("workbench.action.minimizeOtherEditors")
+restore: user.vscode("workbench.action.evenEditorWidths")
+
+#breadcrumb
+select breadcrumb: user.vscode("breadcrumbs.focusAndSelect")
+# Use `alt-left` and `alt-right` to navigate the bread crumb
+
+replace here:
+    user.replace("")
+    key(cmd-alt-l)
+
+hover show: user.vscode("editor.action.showHover")
+
+join lines: user.vscode("editor.action.joinLines")
+
+full screen: user.vscode("workbench.action.toggleFullScreen")
+
+curse undo: user.vscode("cursorUndo")
+curse redo: user.vscode("cursorRedo")
+
+select word: user.vscode("editor.action.addSelectionToNextFindMatch")
+skip word: user.vscode("editor.action.moveSelectionToNextFindMatch")
+
+# jupyter
+cell next: user.vscode("notebook.focusNextEditor")
+cell last: user.vscode("notebook.focusPreviousEditor")
+cell run above: user.vscode("notebook.cell.executeCellsAbove")
+cell run: user.vscode("notebook.cell.execute")
+
+install local: user.vscode("workbench.extensions.action.installVSIX")
+preview markdown: user.vscode("markdown.showPreview")
+
+tit case: 
+    insert("Transform to Title Case")
+low case: 
+    insert("Transform to Lowercase")
+up case: 
+    key(ctrl-shift-p)
+    insert("Format Selection")
+    key(enter)
+recenter: 
+    key(ctrl-shift-p)
+    insert("Recenter Top Bottom")
+    key(enter)
+
+# Searching Petr Krysl 2024
+search in files:
+    key(ctrl-shift-f)
+# Petr Krysl 2024
+quick search:
+    key(ctrl-shift-p)
+    key(backspace)
+    key(%)
+
+# Bookmarks. Requires Bookmarks plugin
+bar marks: user.vscode("workbench.view.extension.bookmarks")
+go marks:
+    user.deprecate_command("2023-06-06", "go marks", "bar marks")
+    user.vscode("workbench.view.extension.bookmarks")
+toggle mark: user.vscode("bookmarks.toggle")
+go next mark: user.vscode("bookmarks.jumpToNext")
+go last mark: user.vscode("bookmarks.jumpToPrevious")
+
+close other tabs: user.vscode("workbench.action.closeOtherEditors")
+close all tabs: user.vscode("workbench.action.closeAllEditors")
+close tabs way right: user.vscode("workbench.action.closeEditorsToTheRight")
+close tabs way left: user.vscode("workbench.action.closeEditorsToTheLeft")
+
+# Folding
+fold that: user.vscode("editor.fold")
+unfold that: user.vscode("editor.unfold")
+fold those: user.vscode("editor.foldAllMarkerRegions")
+unfold those: user.vscode("editor.unfoldRecursively")
+fold all: user.vscode("editor.foldAll")
+unfold all: user.vscode("editor.unfoldAll")
+fold comments: user.vscode("editor.foldAllBlockComments")
+fold one: user.vscode("editor.foldLevel1")
+fold two: user.vscode("editor.foldLevel2")
+fold three: user.vscode("editor.foldLevel3")
+fold four: user.vscode("editor.foldLevel4")
+fold five: user.vscode("editor.foldLevel5")
+fold six: user.vscode("editor.foldLevel6")
+fold seven: user.vscode("editor.foldLevel7")
+
+# Git / Github (not using verb-noun-adjective pattern, mirroring terminal commands.)
+git branch: user.vscode("git.branchFrom")
+git branch this: user.vscode("git.branch")
+git checkout [<user.text>]:
+    user.vscode("git.checkout")
+    sleep(50ms)
+    insert(text or "")
+git commit [<user.text>]:
+    user.vscode("git.commitStaged")
+    sleep(100ms)
+    user.insert_formatted(text or "", "CAPITALIZE_FIRST_WORD")
+git commit undo: user.vscode("git.undoCommit")
+git commit amend: user.vscode("git.commitStagedAmend")
+git diff: user.vscode("git.openChange")
+git fetch: user.vscode("git.fetch")
+git fetch all: user.vscode("git.fetchAll")
+git ignore: user.vscode("git.ignore")
+git merge: user.vscode("git.merge")
+git output: user.vscode("git.showOutput")
+git pull: user.vscode("git.pullRebase")
+git push: user.vscode("git.push")
+git push force: user.vscode("git.pushForce")
+git rebase abort: user.vscode("git.rebaseAbort")
+git reveal: user.vscode("git.revealInExplorer")
+git revert: user.vscode("git.revertChange")
+git stash: user.vscode("git.stash")
+git stash pop: user.vscode("git.stashPop")
+git status: user.vscode("workbench.scm.focus")
+git stage: user.vscode("git.stage")
+git stage all: user.vscode("git.stageAll")
+git sync: user.vscode("git.sync")
+git unstage: user.vscode("git.unstage")
+git unstage all: user.vscode("git.unstageAll")
+pull request: user.vscode("pr.create")
+# Use keyboard shortcuts because VSCode relies on when clause contexts to choose the appropriate
+# action: https://code.visualstudio.com/api/references/when-clause-contexts
+change next: key(alt-f5)
+change last: key(shift-alt-f5)
+
+# Testing
+test run: user.vscode("testing.runAtCursor")
+test run file: user.vscode("testing.runCurrentFile")
+test run all: user.vscode("testing.runAll")
+test run failed: user.vscode("testing.reRunFailTests")
+test run last: user.vscode("testing.reRunLastRun")
+
+test debug: user.vscode("testing.debugAtCursor")
+test debug file: user.vscode("testing.debugCurrentFile")
+test debug all: user.vscode("testing.debugAll")
+test debug failed: user.vscode("testing.debugFailTests")
+test debug last: user.vscode("testing.debugLastRun")
+
+test cancel: user.vscode("testing.cancelRun")
+
+# Debugging
+break point: user.vscode("editor.debug.action.toggleBreakpoint")
+step over: user.vscode("workbench.action.debug.stepOver")
+debug step into: user.vscode("workbench.action.debug.stepInto")
+debug step out [of]: user.vscode("workbench.action.debug.stepOut")
+debug start: user.vscode("workbench.action.debug.start")
+debug pause: user.vscode("workbench.action.debug.pause")
+debug stopper: user.vscode("workbench.action.debug.stop")
+debug continue: user.vscode("workbench.action.debug.continue")
+debug restart: user.vscode("workbench.action.debug.restart")
+debug console: user.vscode("workbench.debug.action.toggleRepl")
+debug clean: user.vscode("workbench.debug.panel.action.clearReplAction")
+
+# Terminal
+terminal external: user.vscode("workbench.action.terminal.openNativeConsole")
+terminal new: user.vscode("workbench.action.terminal.new")
+terminal next: user.vscode("workbench.action.terminal.focusNext")
+terminal last: user.vscode("workbench.action.terminal.focusPrevious")
+terminal split: user.vscode("workbench.action.terminal.split")
+terminal zoom: user.vscode("workbench.action.toggleMaximizedPanel")
+terminal trash: user.vscode("workbench.action.terminal.kill")
+terminal toggle: user.vscode_and_wait("workbench.action.terminal.toggleTerminal")
+terminal scroll up: user.vscode("workbench.action.terminal.scrollUp")
+terminal scroll down: user.vscode("workbench.action.terminal.scrollDown")
+terminal <number_small>: user.vscode_terminal(number_small)
+
+task run [<user.text>]:
+    user.vscode("workbench.action.tasks.runTask")
+    insert(user.text or "")
+copy line down: user.vscode("editor.action.copyLinesDownAction")
+copy line up: user.vscode("editor.action.copyLinesUpAction")
+
+#Expand/Shrink AST Selection
+select less: user.vscode("editor.action.smartSelect.shrink")
+select (more | this): user.vscode("editor.action.smartSelect.expand")
+
+minimap: user.vscode("editor.action.toggleMinimap")
+maximize: user.vscode("workbench.action.minimizeOtherEditors")
+restore: user.vscode("workbench.action.evenEditorWidths")
+
+#breadcrumb
+select breadcrumb: user.vscode("breadcrumbs.focusAndSelect")
+# Use `alt-left` and `alt-right` to navigate the bread crumb
+
+replace here:
+    user.replace("")
+    key(cmd-alt-l)
+
+hover show: user.vscode("editor.action.showHover")
+
+join lines: user.vscode("editor.action.joinLines")
+
+full screen: user.vscode("workbench.action.toggleFullScreen")
+
+curse undo: user.vscode("cursorUndo")
+curse redo: user.vscode("cursorRedo")
+
+select word: user.vscode("editor.action.addSelectionToNextFindMatch")
+skip word: user.vscode("editor.action.moveSelectionToNextFindMatch")
+
+# jupyter
+cell next: user.vscode("notebook.focusNextEditor")
+cell last: user.vscode("notebook.focusPreviousEditor")
+cell run above: user.vscode("notebook.cell.executeCellsAbove")
+cell run: user.vscode("notebook.cell.execute")
+
+install local: user.vscode("workbench.extensions.action.installVSIX")
+preview markdown: user.vscode("markdown.showPreview")
+
+tit case: 
+    key(ctrl-shift-p)
+    insert("Transform to Title Case")
+    key(enter)
+low case: 
+    key(ctrl-shift-p)
+    insert("Transform to Lowercase")
+    key(enter)
+up case: 
+    key(ctrl-shift-p)
+    insert("Transform to Uppercase")
+    key(enter)

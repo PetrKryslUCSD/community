@@ -1,0 +1,13 @@
+list: user.code_type
+code.language: python
+-
+
+any: Any
+boolean: Bool
+dick: dict
+float: Float
+integer: Int
+iterable: Iterable
+tuple: tuple
+union: UnionAny
+vector: Vec

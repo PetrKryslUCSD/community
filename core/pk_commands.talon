@@ -37,3 +37,6 @@ new paragraph:
 
 comma blank: insert(", ")
 say and: insert(" and ")
+
+paste plain:
+    key(ctrl-shift-v)

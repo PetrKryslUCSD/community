@@ -1,0 +1,28 @@
+list: user.code_keyword
+code.language: julia
+-
+
+begin: "begin"
+end: "end"
+break: "break"
+case: "case "
+fun: "function "
+define: "def "
+elif: "elif "
+else: "else "
+false: "False"
+for: "for "
+global: "global "
+if: "if "
+import: "import "
+in: " in "
+is: " is "
+nothing: "nothing"
+not: "!"
+return: "return "
+true: "True"
+try: "try"
+type: "type"
+while: "while "
+with: "with "
+
