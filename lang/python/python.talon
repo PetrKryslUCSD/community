@@ -40,6 +40,11 @@ state past: "pass"
     user.insert_between("raise {python_exception}(", ")")
 [state] except {user.python_exception}: "except {python_exception}:"
 
+# Petr Krysl 2026r
+flip comment:
+    key(ctrl-/)
+assign: insert(" = ")
+
 dock string: user.code_comment_documentation()
 dock {user.python_docstring_fields}:
     insert("{python_docstring_fields}")
