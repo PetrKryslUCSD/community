@@ -56,7 +56,7 @@ currency_symbols = [
 
 symbols = [
     Symbol("`", ["back tick", "bee tick"], ["grave"]), # Krysl 2026
-    Symbol(",", ["comma", "coma"]),
+    Symbol(",", ["comma", "punk"]),
     Symbol(".", ["period", "full stop"], ["dot", "point"]),
     Symbol(";", ["semicolon", "wink"], ["semi"]), # Krysl 2026
     Symbol(":", ["colon"]),
@@ -87,8 +87,8 @@ symbols = [
     Symbol(">", None, ["rangle", "R angle", "right angle", "greater than", "close fork"]), # Krysl 2026
     Symbol("^", None, ["caret", "hat"]),
     Symbol("|", None, ["pipe"]),
-    Symbol("'", None, ["quote", "apostrophe", "trophy"]), # Krysl 2026
-    Symbol('"', None, ["dub quote", "double quote"]),
+    Symbol("'", None, ["apostrophe", "trophy"]), # Krysl 2026
+    Symbol('"', None, ["quote", "double quote"]), # Krysl 2026
 ]
 
 # by convention, symbols should include currency symbols
