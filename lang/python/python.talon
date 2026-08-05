@@ -77,3 +77,24 @@ from import: user.insert_snippet_by_name("importFromStatement")
 type <user.python_generic_type>: insert(python_generic_type)
 returns <user.python_generic_type>: insert(" -> {python_generic_type}")
 is type <user.python_generic_type>: insert(": {python_generic_type}")
+
+split [this cell]: key(ctrl-shift--)
+markdown [this cell]: 
+    key(ctrl-shift-p)
+    insert("notebook: stop editing cell")
+    sleep(1500ms)
+    key(enter)
+    key(m)
+code this cell: 
+    key(escape)
+    sleep(1500ms)
+    key(y)
+uncomment [this cell]: 
+    key(ctrl-a)
+    key(ctrl-/)
+    key(ctrl-shift-p)
+    insert("notebook: stop editing cell")
+    sleep(1500ms)
+    key(enter)
+    key(m)
+
