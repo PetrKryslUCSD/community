@@ -3,7 +3,6 @@ os: mac
 -
 
 end: end
-home: home
 minus: minus
 return: return
 enter: keypad_enter
