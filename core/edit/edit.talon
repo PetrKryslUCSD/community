@@ -29,31 +29,22 @@ go <user.navigation_step>+: user.perform_navigation_steps(navigation_step_list)
 go line start | head: edit.line_start()
 go line end | tail: edit.line_end()
 
-go way left:
+# Petr Krysl 2020-2026: I like these shorter versions: skip, way, up, down, left, right
+(go word left | skip left):
+    edit.word_left()
+(go word right | skip right):
+    edit.word_right()
+[go] way left:
     edit.line_start()
     edit.line_start()
-go way right: edit.line_end()
-go way up: edit.file_start()
-go way down: edit.file_end()
+[go] way right:
+    edit.line_end()
+[go] way down:
+    edit.file_end()
+[go] way up:
+    edit.file_start()
 
-go top: edit.file_start()
-go bottom: edit.file_end()
-
-go page up: edit.page_up()
-go page down: edit.page_down()
-
-# Indentation
-indent [more]: edit.indent_more()
-indent less | out dent: edit.indent_less()
-
-# Copy
-copy that: edit.copy()
-
-# Cut
-cut that: edit.cut()
-
-# Paste
-(pace | paste) (that | it): edit.paste()
+# Paste Petr Krysl 2026
 (pace | paste) enter:
     edit.paste()
     key(enter)
@@ -67,6 +58,45 @@ clone line: edit.line_clone()
 new line above: edit.line_insert_up()
 new line below | slap: edit.line_insert_down()
 
+
+# Selecting
+
+# Petr Krysl 2023-2026: I like these shorter versions
+(select word left | ex left):
+    edit.extend_word_left()
+(select word right | ex right):
+    edit.extend_word_right()
+(select way left | ex way left):
+    edit.extend_line_start()
+(select way right | ex way right):
+    edit.extend_line_end()
+(select up | ex up):
+    edit.extend_line_up()
+(select down | ex down):
+    edit.extend_line_down()
+
+# Petr Krysl 2026 >
+# Indentation
+indent [more]: edit.indent_more()
+indent less | out dent: edit.indent_less()
+
+# Copy
+# Petr Krysl, 2026
+copy: edit.copy()
+
+# Cut
+cut: edit.cut()
+
+# Paste
+paste: edit.paste()
+# Petr Krysl 2026 <
+
+# Duplication
+clone that: edit.selection_clone()
+# clone line: edit.line_clone()
+# This is getting confused with go to line, Petr Krysl, 2025
+repeat line: edit.line_clone()
+
 # Insert padding with optional symbols
 padding: user.insert_between(" ", " ")
 (pad | padding) <user.symbol_key>+:
@@ -74,12 +104,17 @@ padding: user.insert_between(" ", " ")
     user.insert_many(symbol_key_list)
     insert(" ")
 
+# Petr Krysl, 2026
 # Undo/redo
-undo that: edit.undo()
+nope: edit.undo()
 redo that: edit.redo()
 
-# Save
-file save: edit.save()
-file save all: edit.save_all()
+# Petr Krysl, 2026
+[file] save: edit.save()
+[file] save all: edit.save_all()
 
 [go] line mid: user.line_middle()
+
+# Petr Krysl 2020-2026: I prefer to insert the enter where the cursor is.
+slap:
+    key(enter)

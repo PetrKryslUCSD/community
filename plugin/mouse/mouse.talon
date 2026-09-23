@@ -3,7 +3,8 @@ control off: user.mouse_sleep()
 zoom mouse: tracking.control_zoom_toggle()
 camera overlay: tracking.control_debug_toggle()
 run calibration: tracking.calibrate()
-touch:
+# Krysl 2026 alternative > 
+lefty:
     # close zoom if open
     tracking.zoom_cancel()
     mouse_click(0)
@@ -26,6 +27,13 @@ mid click:
     mouse_click(2)
     # close the mouse grid
     user.grid_close()
+
+# An alternative to shift lefty. Petr Krysl 2025
+ex point:
+    key("shift:down")
+    mouse_click(0)
+    key("shift:up")
+
 
 #see keys.py for modifiers.
 #defaults

@@ -18,3 +18,9 @@ delete: backspace
 forward delete: delete
 menu key: menu
 print screen: printscr
+
+
+# Krysl 2026
+smack: backspace 
+strike: delete
+escape: escape
