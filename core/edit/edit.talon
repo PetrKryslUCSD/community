@@ -54,9 +54,9 @@ paste match: edit.paste_match_style()
 clone that: edit.selection_clone()
 clone line: edit.line_clone()
 
-# Insert new line
+# Insert new line Petr Krysl 2026 -- remove slap for new line
 new line above: edit.line_insert_up()
-new line below | slap: edit.line_insert_down()
+new line below: edit.line_insert_down()
 
 
 # Selecting
