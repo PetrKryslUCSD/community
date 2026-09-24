@@ -1,23 +1,22 @@
 Symbol,Mode (command/dictation/both),Spoken Forms (separated with commas)
-`,both,back tick
+`,both,bee tick
 `,command,grave
-",",both,comma,coma
+",",both,punk
 .,both,period,full stop
 .,command,dot,point
-;,both,semicolon
-;,command,semi
+;,both,wink
 :,both,colon
-?,both,question mark
-?,command,question
+?,both,question markb
+?,command,quest
 !,both,exclamation mark,exclamation point
 !,command,bang
 *,both,asterisk
 *,command,star
 #,both,hash sign,number sign
-#,command,hash
+#,command,hash,sharp
 %,both,percent sign
-%,command,percent
-@,both,at symbol,at sign
+%,command,percent,percy
+@,both,at symbol,at sign,swirl
 °,both,degree sign
 °,command,degree,degrees
 &,both,ampersand,and sign
@@ -28,25 +27,25 @@ Symbol,Mode (command/dictation/both),Spoken Forms (separated with commas)
 —,both,em dash,mutton dash
 =,command,equals
 +,command,plus
-~,command,tilde
+~,command,tilde,squiggle
 _,command,down score,underscore
-(,both,paren,L paren,left paren
-),both,R paren,right paren
-[,command,brack,L brack,bracket,L bracket,left bracket,square,L square,left square
-],command,R brack,R bracket,right bracket,R square,right square
+(,both,open par
+),both,close par
+[,command,open square
+],command,close square
 /,both,forward slash
 /,command,slash
-\,command,backslash
-{,command,brace,L brace,left brace,curly bracket,left curly bracket
-},command,R brace,right brace,R curly bracket,right curly bracket
-<,command,angle,L Angle,left angle,less than
->,command,rangle,R angle,right angle,greater than
-^,command,caret
+\,command,backslash,whack
+{,command,open curly
+},command,close curly
+<,command,open fork
+>,command,close fork
+^,command,caret,hat
 |,command,pipe
-',command,quote,apostrophe
+',command,quote,apostrophe,trophy
 """",command,dub quote,double quote
-$,both,dollar sign
-$,command,dollar
+$,both,dollar sign,dolly
+$,command,dollar,dolly
 £,both,pound sign
 £,command,pound
 €,both,euro sign
