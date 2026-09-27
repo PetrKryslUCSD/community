@@ -1,15 +1,15 @@
 Symbol,Mode (command/dictation/both),Spoken Forms (separated with commas)
 `,both,bee tick
 `,command,grave
-",",both,punk
+",",dictation,punk,comma
+",",command,punk
 .,both,period,full stop
 .,command,dot,point
 ;,both,wink
 :,both,colon
 ?,both,question markb
 ?,command,quest
-!,both,exclamation mark,exclamation point
-!,command,bang
+!,both,exclamation mark,exclamation point,bang
 *,both,asterisk
 *,command,star
 #,both,hash sign,number sign
