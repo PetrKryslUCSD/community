@@ -28,7 +28,7 @@ Symbol,Mode (command/dictation/both),Spoken Forms (separated with commas)
 =,command,equals
 +,command,plus
 ~,command,tilde,squiggle
-_,command,down score,underscore
+_,command,score,underscore
 (,both,open par
 ),both,close par
 [,command,open square
@@ -40,10 +40,10 @@ _,command,down score,underscore
 },command,close curly
 <,command,open fork
 >,command,close fork
-^,command,caret,hat
+^,command,caret
 |,command,pipe
-',command,quote,apostrophe,trophy
-"""",command,dub quote,double quote
+',command,apostrophe,trophy
+"""",command,quote
 $,both,dollar sign,dolly
 $,command,dollar,dolly
 £,both,pound sign
