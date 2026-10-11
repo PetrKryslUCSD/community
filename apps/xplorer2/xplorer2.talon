@@ -14,6 +14,8 @@ action(user.file_manager_open_parent):
 ^go <user.letter>$: user.file_manager_open_volume("{letter}:")
 go app data: user.file_manager_open_directory("%AppData%")
 go drop box: user.file_manager_open_directory("Dropbox")
+go downloads: user.file_manager_open_directory("Downloads")
+go documents: user.file_manager_open_directory("documents")
 go program files: user.file_manager_open_directory("%programfiles%")
 
 
