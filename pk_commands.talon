@@ -44,3 +44,5 @@ paste plain:
 # Krysl 2026
 args: user.insert_between("(", ")")
 
+search: key(ctrl-f)
+search in files: key(shift-ctrl-f)
