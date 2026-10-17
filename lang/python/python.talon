@@ -72,3 +72,6 @@ from import: user.insert_snippet_by_name("importFromStatement")
 type <user.python_generic_type>: insert(python_generic_type)
 returns <user.python_generic_type>: insert(" -> {python_generic_type}")
 is type <user.python_generic_type>: insert(": {python_generic_type}")
+
+# Petr Krysl 2026
+flip comment: key(ctrl-/)
